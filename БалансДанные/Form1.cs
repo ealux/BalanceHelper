@@ -27,6 +27,7 @@ namespace БалансДанные
 
             button1.Enabled = false;
         }
+        //Это комент
 
         #region Table #1
 

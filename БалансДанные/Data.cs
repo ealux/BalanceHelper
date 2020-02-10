@@ -282,7 +282,7 @@ namespace БалансДанные
                     case "name":
                         this.Name = branch.InnerText;
                         break;
-                    case "ippizmp":
+                    case "iqpizmp":
                         if (branch.InnerText.Contains(".")) this.Pin = Double.Parse(branch.InnerText.Replace(".", ","));
                         else this.Pin = Double.Parse(branch.InnerText);
                         break;
@@ -290,7 +290,7 @@ namespace БалансДанные
                         if (branch.InnerText.Contains(".")) this.Pout = Double.Parse(branch.InnerText.Replace(".", ","));
                         else this.Pout = Double.Parse(branch.InnerText);
                         break;
-                    case "ippizmp_excel":
+                    case "iqpizmp_excel":
                         this.ExcelPin = branch.InnerText;
                         break;
                     case "ippizmo_excel":
@@ -312,7 +312,7 @@ namespace БалансДанные
             {
                 switch (node.Name)
                 {
-                    case "ippizmp":
+                    case "iqpizmp":
                         if (this.Pin.ToString().Contains(",")) node.InnerText = this.Pin.ToString().Replace(",", ".");
                         else node.InnerText = this.Pin.ToString();
                         break;

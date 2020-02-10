@@ -2,6 +2,7 @@
 using System.Xml;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using System;
 
 namespace БалансДанные
 {
@@ -181,7 +182,9 @@ namespace БалансДанные
                         ? double.Parse(oprNode["pras"].InnerText.Replace(".", ","))
                         : double.Parse(oprNode["pras"].InnerText);
 
-                double pizm_pras = pizm - pras;
+                double pizm_pras = Math.Abs(pizm) >= Math.Abs(pras)
+                                   ? Math.Abs(pizm) - Math.Abs(pras)
+                                   : -(Math.Abs(pras) - Math.Abs(pizm));
 
                 double pizm_pras_proc = pizm != 0.0 ? (pizm_pras / pizm) : 0.0;
 
@@ -191,9 +194,9 @@ namespace БалансДанные
                         ? double.Parse(oprNode["ppogfull"].InnerText.Replace(".", ","))
                         : double.Parse(oprNode["ppogfull"].InnerText);
 
-                pws.Cells[row, col].Value = pizm;
+                pws.Cells[row, col].Value = Math.Abs(pizm);
                     pws.Cells[row, col].Style.Numberformat.Format = "#,##0.00";
-                pws.Cells[row, col+1].Value = pras;
+                pws.Cells[row, col+1].Value = Math.Abs(pras);
                     pws.Cells[row, col+1].Style.Numberformat.Format = "#,##0.00";
                 pws.Cells[row, col+2].Value = pizm_pras;
                     pws.Cells[row, col+2].Style.Numberformat.Format = "#,##0.00";
@@ -227,11 +230,15 @@ namespace БалансДанные
 
                 var pws = pwb.Worksheets["Branches"];
 
-                double pizm = oprNode["_ipp"] == null
-                    ? 0.0
-                    : oprNode["_ipp"].InnerText.Contains(".")
-                        ? double.Parse(oprNode["_ipp"].InnerText.Replace(".", ","))
-                        : double.Parse(oprNode["_ipp"].InnerText);
+                double pizm = oprNode["_iqp"] == null
+                    ? (oprNode["ippizmo"] == null 
+                       ? 0.0
+                       : oprNode["ippizmo"].InnerText.Contains(".")
+                         ? double.Parse(oprNode["ippizmo"].InnerText.Replace(".", ","))
+                         : double.Parse(oprNode["ippizmo"].InnerText))
+                    : oprNode["_iqp"].InnerText.Contains(".")
+                        ? double.Parse(oprNode["_iqp"].InnerText.Replace(".", ","))
+                        : double.Parse(oprNode["_iqp"].InnerText);
 
                 double pras = oprNode["ipp"] == null
                     ? 0.0
@@ -239,7 +246,9 @@ namespace БалансДанные
                         ? double.Parse(oprNode["ipp"].InnerText.Replace(".", ","))
                         : double.Parse(oprNode["ipp"].InnerText);
 
-                double pizm_pras = pizm - pras;
+                double pizm_pras = Math.Abs(pizm) >= Math.Abs(pras)
+                                   ? Math.Abs(pizm) - Math.Abs(pras)
+                                   : -(Math.Abs(pras) - Math.Abs(pizm));
 
                 double pizm_pras_proc = pizm != 0.0 ? (pizm_pras / pizm) : 0.0;
 
@@ -255,9 +264,9 @@ namespace БалансДанные
                         ? double.Parse(oprNode["dp"].InnerText.Replace(".", ","))
                         : double.Parse(oprNode["dp"].InnerText);
 
-                pws.Cells[row, col].Value = pizm;
+                pws.Cells[row, col].Value = Math.Abs(pizm);
                     pws.Cells[row, col].Style.Numberformat.Format = "#,##0.00";
-                pws.Cells[row, col + 1].Value = pras;
+                pws.Cells[row, col + 1].Value = Math.Abs(pras);
                     pws.Cells[row, col + 1].Style.Numberformat.Format = "#,##0.00";
                 pws.Cells[row, col + 2].Value = pizm_pras;
                     pws.Cells[row, col + 2].Style.Numberformat.Format = "#,##0.00";

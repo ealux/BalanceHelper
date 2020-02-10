@@ -89,9 +89,9 @@ namespace БалансДанные
                             if (b.NumberStart == this.Start &&
                                 b.NumberEnd == this.End)
                             {
-                                if(InOut.Item1 & b.SourceBranch["ippizmp"] == null)
+                                if(InOut.Item1 & b.SourceBranch["iqpizmp"] == null)
                                 {
-                                    b.SourceBranch.InnerXml += "<ippizmp></ippizmp>";
+                                    b.SourceBranch.InnerXml += "<iqpizmp></iqpizmp>";
                                 }
                                 if (InOut.Item2 & b.SourceBranch["ippizmo"] == null)
                                 {

@@ -230,21 +230,53 @@ namespace БалансДанные
 
                 var pws = pwb.Worksheets["Branches"];
 
-                double pizm = oprNode["_iqp"] == null
-                    ? (oprNode["ippizmo"] == null 
-                       ? 0.0
-                       : oprNode["ippizmo"].InnerText.Contains(".")
-                         ? double.Parse(oprNode["ippizmo"].InnerText.Replace(".", ","))
-                         : double.Parse(oprNode["ippizmo"].InnerText))
-                    : oprNode["_iqp"].InnerText.Contains(".")
-                        ? double.Parse(oprNode["_iqp"].InnerText.Replace(".", ","))
-                        : double.Parse(oprNode["_iqp"].InnerText);
+                string postion;
 
-                double pras = oprNode["ipp"] == null
-                    ? 0.0
-                    : oprNode["ipp"].InnerText.Contains(".")
-                        ? double.Parse(oprNode["ipp"].InnerText.Replace(".", ","))
-                        : double.Parse(oprNode["ipp"].InnerText);
+                double pizm = 0.0;
+                double pras = 0.0;
+
+                if ((oprNode["ippizmo"] != null | oprNode["ippizmp"] != null) & (oprNode["iqpizmo"] == null | oprNode["iqpizmp"] == null)) //Только начало линии
+                {
+                    pizm = oprNode["ippizmp"] == null
+                           ? oprNode["ippizmo"] == null
+                             ? 0.0
+                             : (oprNode["ippizmo"].InnerText.Contains(".")
+                                ? double.Parse(oprNode["ippizmo"].InnerText.Replace(".", ","))
+                                : double.Parse(oprNode["ippizmo"].InnerText))
+                           : (oprNode["ippizmp"].InnerText.Contains(".")
+                                ? double.Parse(oprNode["ippizmp"].InnerText.Replace(".", ","))
+                                : double.Parse(oprNode["ippizmp"].InnerText));
+
+                    pras = oprNode["ipp"] == null
+                             ? 0.0
+                             : oprNode["ipp"].InnerText.Contains(".")
+                               ? double.Parse(oprNode["ipp"].InnerText.Replace(".", ","))
+                               : double.Parse(oprNode["ipp"].InnerText);
+                }
+
+                else if((oprNode["ippizmo"] == null | oprNode["ippizmp"] == null) & (oprNode["iqpizmo"] != null | oprNode["iqpizmp"] != null)) //Только конец линии
+                {
+                    pizm = oprNode["iqpizmp"] == null
+                           ? oprNode["iqpizmo"] == null
+                             ? 0.0
+                             : (oprNode["iqpizmo"].InnerText.Contains(".")
+                                ? double.Parse(oprNode["iqpizmo"].InnerText.Replace(".", ","))
+                                : double.Parse(oprNode["iqpizmo"].InnerText))
+                           : (oprNode["iqpizmp"].InnerText.Contains(".")
+                                ? double.Parse(oprNode["iqpizmp"].InnerText.Replace(".", ","))
+                                : double.Parse(oprNode["iqpizmp"].InnerText));
+
+                    pras = oprNode["iqp"] == null
+                             ? 0.0
+                             : oprNode["iqp"].InnerText.Contains(".")
+                               ? double.Parse(oprNode["iqp"].InnerText.Replace(".", ","))
+                               : double.Parse(oprNode["iqp"].InnerText);
+                }
+                else if((oprNode["ippizmo"] == null | oprNode["ippizmp"] == null) & (oprNode["iqpizmo"] == null | oprNode["iqpizmp"] == null)) //Нет данных
+                {
+                    pizm = 0.0;
+                    pras = 0.0;
+                }
 
                 double pizm_pras = Math.Abs(pizm) >= Math.Abs(pras)
                                    ? Math.Abs(pizm) - Math.Abs(pras)

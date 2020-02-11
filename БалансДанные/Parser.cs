@@ -127,16 +127,16 @@ namespace БалансДанные
             }
 
             //Additional xmlNodes upon complete DataGrid cells
-            if (Rows.Count > 0)
-            {
-                foreach (var row in Rows)
-                {
-                    if (row.Item2 == 0)
-                    {
+            //if (Rows.Count > 0)
+            //{
+            //    foreach (var row in Rows)
+            //    {
+            //        if (row.Item2 == 0)
+            //        {
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
             return Rows;
 
@@ -177,6 +177,7 @@ namespace БалансДанные
             foreach (var x in excDatas)
             {
                 maxCapasity = x.PinData.Count > 0 ? x.PinData.Count : x.PoutData.Count;
+                //if (maxCapasity > 0) break;
             }
             if (maxCapasity == 0) MessageBox.Show("Данные Excel отсутствуетют");
 

@@ -56,7 +56,7 @@ namespace БалансДанные
             {
                 col = Convert.ToInt16(txtCount.Text);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка ввода количества значений или значений в Excel");
                 return;
@@ -102,8 +102,8 @@ namespace БалансДанные
 
             using (ExcelPackage p = new ExcelPackage(new FileInfo(path)))
             {
-                //try
-                //{
+                try
+                {
                     var sheet = p.Workbook.Worksheets[1];
                     ExcelRangeBase cell = sheet.Cells[1, 1];
 
@@ -135,12 +135,12 @@ namespace БалансДанные
                         txtCount.Text = (col-1).ToString();
                     }
 
-                //}
-                //catch (Exception exception)
-                //{
-                //    MessageBox.Show("Ошибка входного файла Excel");
-                //    return;
-                //}
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Ошибка входного файла Excel");
+                    return;
+                }
             }
 
             pathExcel.Text = path;

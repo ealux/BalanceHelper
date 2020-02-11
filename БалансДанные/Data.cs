@@ -286,6 +286,14 @@ namespace БалансДанные
                         if (branch.InnerText.Contains(".")) this.Pin = Double.Parse(branch.InnerText.Replace(".", ","));
                         else this.Pin = Double.Parse(branch.InnerText);
                         break;
+                    case "ippizmp":
+                        if (branch.InnerText.Contains(".")) this.Pin = Double.Parse(branch.InnerText.Replace(".", ","));
+                        else this.Pin = Double.Parse(branch.InnerText);
+                        break;
+                    case "iqpizmo":
+                        if (branch.InnerText.Contains(".")) this.Pout = Double.Parse(branch.InnerText.Replace(".", ","));
+                        else this.Pout = Double.Parse(branch.InnerText);
+                        break;
                     case "ippizmo":
                         if (branch.InnerText.Contains(".")) this.Pout = Double.Parse(branch.InnerText.Replace(".", ","));
                         else this.Pout = Double.Parse(branch.InnerText);
@@ -293,7 +301,13 @@ namespace БалансДанные
                     case "iqpizmp_excel":
                         this.ExcelPin = branch.InnerText;
                         break;
+                    case "ippizmp_excel":
+                        this.ExcelPin = branch.InnerText;
+                        break;
                     case "ippizmo_excel":
+                        this.ExcelPout = branch.InnerText;
+                        break;
+                    case "iqpizmo_excel":
                         this.ExcelPout = branch.InnerText;
                         break;
                 }
@@ -316,7 +330,15 @@ namespace БалансДанные
                         if (this.Pin.ToString().Contains(",")) node.InnerText = this.Pin.ToString().Replace(",", ".");
                         else node.InnerText = this.Pin.ToString();
                         break;
+                    case "ippizmp":
+                        if (this.Pin.ToString().Contains(",")) node.InnerText = this.Pin.ToString().Replace(",", ".");
+                        else node.InnerText = this.Pin.ToString();
+                        break;
                     case "ippizmo":
+                        if (this.Pout.ToString().Contains(",")) node.InnerText = this.Pout.ToString().Replace(",", ".");
+                        else node.InnerText = this.Pout.ToString();
+                        break;
+                    case "iqpizmo":
                         if (this.Pout.ToString().Contains(",")) node.InnerText = this.Pout.ToString().Replace(",", ".");
                         else node.InnerText = this.Pout.ToString();
                         break;

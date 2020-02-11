@@ -93,6 +93,14 @@ namespace БалансДанные
                                 {
                                     b.SourceBranch.InnerXml += "<iqpizmp></iqpizmp>";
                                 }
+                                if (InOut.Item1 & b.SourceBranch["ippizmp"] == null)
+                                {
+                                    b.SourceBranch.InnerXml += "<ippizmp></ippizmp>";
+                                }
+                                if (InOut.Item2 & b.SourceBranch["iqpizmo"] == null)
+                                {
+                                    b.SourceBranch.InnerXml += "<iqpizmo></iqpizmo>";
+                                }
                                 if (InOut.Item2 & b.SourceBranch["ippizmo"] == null)
                                 {
                                     b.SourceBranch.InnerXml += "<ippizmo></ippizmo>";

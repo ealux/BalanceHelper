@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.TxtCount = new System.Windows.Forms.TextBox();
@@ -42,10 +43,6 @@
             this.opnTempl = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataPresenter = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.pathTempl2 = new System.Windows.Forms.TextBox();
-            this.opnTempl2 = new System.Windows.Forms.Button();
             this.num = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +50,11 @@
             this.output = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.input_excel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.output_excel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.pathTempl2 = new System.Windows.Forms.TextBox();
+            this.opnTempl2 = new System.Windows.Forms.Button();
+            this.logBox = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataPresenter)).BeginInit();
@@ -200,10 +202,47 @@
             this.output,
             this.input_excel,
             this.output_excel});
-            this.dataPresenter.Location = new System.Drawing.Point(19, 181);
+            this.dataPresenter.Location = new System.Drawing.Point(3, 181);
             this.dataPresenter.Name = "dataPresenter";
-            this.dataPresenter.Size = new System.Drawing.Size(749, 380);
+            this.dataPresenter.Size = new System.Drawing.Size(778, 380);
             this.dataPresenter.TabIndex = 6;
+            // 
+            // num
+            // 
+            this.num.HeaderText = "Номер";
+            this.num.Name = "num";
+            // 
+            // name
+            // 
+            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.name.HeaderText = "Название";
+            this.name.Name = "name";
+            this.name.Width = 82;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Тип";
+            this.type.Name = "type";
+            // 
+            // input
+            // 
+            this.input.HeaderText = "Pизм прием";
+            this.input.Name = "input";
+            // 
+            // output
+            // 
+            this.output.HeaderText = "Pизм отдача";
+            this.output.Name = "output";
+            // 
+            // input_excel
+            // 
+            this.input_excel.HeaderText = "Pпирем_Excel";
+            this.input_excel.Name = "input_excel";
+            // 
+            // output_excel
+            // 
+            this.output_excel.HeaderText = "Pотдача_Excel";
+            this.output_excel.Name = "output_excel";
             // 
             // tabPage2
             // 
@@ -244,52 +283,25 @@
             this.opnTempl2.UseVisualStyleBackColor = true;
             this.opnTempl2.Click += new System.EventHandler(this.opnTempl2_Click);
             // 
-            // num
+            // logBox
             // 
-            this.num.HeaderText = "Номер";
-            this.num.Name = "num";
-            // 
-            // name
-            // 
-            this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.name.HeaderText = "Название";
-            this.name.Name = "name";
-            this.name.Width = 82;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "Тип";
-            this.type.Name = "type";
-            // 
-            // input
-            // 
-            this.input.HeaderText = "Pизм прием";
-            this.input.Name = "input";
-            // 
-            // output
-            // 
-            this.output.HeaderText = "Pизм отдача";
-            this.output.Name = "output";
-            // 
-            // input_excel
-            // 
-            this.input_excel.HeaderText = "Pпирем_Excel";
-            this.input_excel.Name = "input_excel";
-            // 
-            // output_excel
-            // 
-            this.output_excel.HeaderText = "Pотдача_Excel";
-            this.output_excel.Name = "output_excel";
+            this.logBox.Location = new System.Drawing.Point(7, 595);
+            this.logBox.Name = "logBox";
+            this.logBox.Size = new System.Drawing.Size(778, 191);
+            this.logBox.TabIndex = 4;
+            this.logBox.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 605);
+            this.ClientSize = new System.Drawing.Size(795, 790);
+            this.Controls.Add(this.logBox);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Balance Helper";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -327,6 +339,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn output;
         private System.Windows.Forms.DataGridViewTextBoxColumn input_excel;
         private System.Windows.Forms.DataGridViewTextBoxColumn output_excel;
+        private System.Windows.Forms.RichTextBox logBox;
     }
 }
 

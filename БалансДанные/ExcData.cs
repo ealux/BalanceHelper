@@ -1,8 +1,8 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using OfficeOpenXml;
 
 namespace БалансДанные
 {
@@ -22,10 +22,10 @@ namespace БалансДанные
             Regex vetvRegex = new Regex("(\\d*)-(\\d*)");
 
             //Prepare Type
-            if (Row.Item2 == 0) this.Type = "node"; 
-            else this.Type = "branch";                    
+            if (Row.Item2 == 0) this.Type = "node";
+            else this.Type = "branch";
 
-            //Preapare Pin/Pout positions 
+            //Preapare Pin/Pout positions
             if (Row.Item3 & Row.Item4)
             {
                 Pin = true;
@@ -89,7 +89,7 @@ namespace БалансДанные
                             if (b.NumberStart == this.Start &&
                                 b.NumberEnd == this.End)
                             {
-                                if(InOut.Item1 & b.SourceBranch["iqpizmp"] == null)
+                                if (InOut.Item1 & b.SourceBranch["iqpizmp"] == null)
                                 {
                                     b.SourceBranch.InnerXml += "<iqpizmp></iqpizmp>";
                                 }

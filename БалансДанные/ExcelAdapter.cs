@@ -1,11 +1,10 @@
-﻿using System.IO;
+﻿using OfficeOpenXml;
+using System.IO;
 using System.Windows.Forms;
-using OfficeOpenXml;
-
 
 namespace БалансДанные
 {
-    static class ExcelAdapter
+    internal static class ExcelAdapter
     {
         private static string[] Files;
 
@@ -45,7 +44,7 @@ namespace БалансДанные
             };
 
             if (saveFileDialog1.ShowDialog() == DialogResult.Cancel) return;
-            
+
             string filename = saveFileDialog1.FileName;
 
             p.SaveAs(new FileInfo(filename));

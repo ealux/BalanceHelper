@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Balance.Rgm.Nabl
-// Assembly: Rgm, Version=1.0.6136.17908, Culture=neutral, PublicKeyToken=null
-// MVID: 526B4102-62C1-4880-A947-0A573489DF22
-// Assembly location: D:\Program Files (x86)\Balance4\plugins\Rgm.dll
-
-using Balance.Helpers;
+﻿using Balance.Helpers;
 using Balance.Host;
 using System;
 using System.Collections.Generic;

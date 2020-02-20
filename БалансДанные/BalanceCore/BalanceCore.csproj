@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ComponentModel">
       <HintPath>..\..\..\..\BalanceData\lib\ComponentModel.dll</HintPath>
@@ -75,9 +78,9 @@
     <Compile Include="DataBase.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Nabl.cs" />
+    <Compile Include="Resources.cs" />
     <Compile Include="_EnterPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources.cs" />
     <Compile Include="StaticRgm.cs" />
     <Compile Include="Urav.cs" />
   </ItemGroup>
@@ -85,6 +88,20 @@
     <EmbeddedResource Include="Resources.resx">
       <DependentUpon>Resources.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\context.bct">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\default.bl4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\graph.bgr">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="res\static.brg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

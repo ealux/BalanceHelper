@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Balance.Rgm.Urav
-// Assembly: Rgm, Version=1.0.6136.17908, Culture=neutral, PublicKeyToken=null
-// MVID: 526B4102-62C1-4880-A947-0A573489DF22
-// Assembly location: D:\Program Files (x86)\Balance4\plugins\Rgm.dll
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -14,8 +8,11 @@ namespace Balance.Rgm
     {
         private double? value;
         private double? nev;
+
         public Urav() => this.Vars = new List<UravVal>();
+
         public Urav(int id) : this() => this.Id = id;
+
         public double Value
         {
             get
@@ -58,6 +55,7 @@ namespace Balance.Rgm
                 return this.nev.Value;
             }
         }
+
         public List<UravVal> Vars { get; }
         public bool Collapsed { get; set; }
         public int Id { get; set; }

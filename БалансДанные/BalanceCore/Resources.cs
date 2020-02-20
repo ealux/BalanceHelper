@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: ClassLibrary1.Properties.Resources
-// Assembly: Data, Version=1.0.6132.35299, Culture=neutral, PublicKeyToken=null
-// MVID: 28C34725-BFA6-4134-B141-E00F73E07A0D
-// Assembly location: D:\Program Files (x86)\Balance4\plugins\Data.dll
-
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Resources;

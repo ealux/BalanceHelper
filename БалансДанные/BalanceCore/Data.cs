@@ -1,16 +1,10 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Balance.Data.Data
-// Assembly: Data, Version=1.0.6132.35299, Culture=neutral, PublicKeyToken=null
-// MVID: 28C34725-BFA6-4134-B141-E00F73E07A0D
-// Assembly location: D:\Program Files (x86)\Balance4\plugins\Data.dll
-
-using Balance.Host;
+﻿using Balance.Host;
+using BalanceCore;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Grid;
 using Microsoft.Win32;
-using BalanceCore;
 using System;
 using System.Collections;
 using System.Collections.Generic;

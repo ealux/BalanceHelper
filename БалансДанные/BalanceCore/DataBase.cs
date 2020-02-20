@@ -1,14 +1,6 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Balance.Data.DataBase
-// Assembly: Data, Version=1.0.6132.35299, Culture=neutral, PublicKeyToken=null
-// MVID: 28C34725-BFA6-4134-B141-E00F73E07A0D
-// Assembly location: D:\Program Files (x86)\Balance4\plugins\Data.dll
-
-using ClassLibrary1.Properties;
-using Balance.Helpers;
+﻿using Balance.Helpers;
 using Balance.Host;
 using DevExpress.XtraBars;
-using Microsoft.Win32;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -242,29 +234,36 @@ namespace Balance.Data
             catch (Exception) { }
         }
 
-        internal void LoadTablesDefault() => this.OpenDB((Registry.GetValue(Resources.regPathMain, Resources.userFolder, (object)string.Empty) as string) + "\\" + Resources.defaultDB);
+        internal void LoadTablesDefault() => this.OpenDB(Environment.CurrentDirectory + "\\res\\default.bl4");//"default.bl4"/*(Registry.GetValue(Resources.regPathMain, Resources.userFolder, (object)string.Empty) as string) + "\\" + Resources.defaultDB*/);
 
         internal void LoadTables()
         {
-            string str1 = Registry.GetValue(Resources.regPathMain, Resources.userFolder, (object)string.Empty) as string;
-            if (string.IsNullOrEmpty(str1))
-                return;
-            this.PathLoadXmlSchema = str1 + "\\" + Resources.tableFolder;
-            string str2 = Registry.GetValue(Resources.regPathMain, Resources.tableReg, (object)string.Empty) as string;
-            if (string.IsNullOrEmpty(str2))
-                return;
-            string str3 = str2;
-            char[] chArray = new char[1] { ';' };
-            foreach (string str4 in str3.Split(chArray))
-            {
-                string path = this.PathLoadXmlSchema + "\\" + str4;
-                if (File.Exists(path))
-                {
-                    //if (Balance.Data.Data.IP != null)
-                    //  Balance.Data.Data.IP.AddMessage(0, "Загружен шаблон \"" + str4 + "\"", 0, 0);
-                    this.LoadTable(path);
-                }
-            }
+            //string str1 = Registry.GetValue(Resources.regPathMain, Resources.userFolder, (object)string.Empty) as string;
+            //if (string.IsNullOrEmpty(str1))
+            //    return;
+            //this.PathLoadXmlSchema = str1 + "\\" + Resources.tableFolder;
+            //string str2 = Registry.GetValue(Resources.regPathMain, Resources.tableReg, (object)string.Empty) as string;
+            //if (string.IsNullOrEmpty(str2))
+            //    return;
+            //string str3 = str2;
+            //char[] chArray = new char[1] { ';' };
+            //foreach (string str4 in str3.Split(chArray))
+            //{
+            //    string path = this.PathLoadXmlSchema + "\\" + str4;
+            //    if (File.Exists(path))
+            //    {
+            //if (Balance.Data.Data.IP != null)
+            //  Balance.Data.Data.IP.AddMessage(0, "Загружен шаблон \"" + str4 + "\"", 0, 0);
+
+            string context = Environment.CurrentDirectory + "\\res\\context.bct";
+            string graph = Environment.CurrentDirectory + "\\res\\graph.bgr";
+            string stat = Environment.CurrentDirectory + "\\res\\static.brg";
+
+            this.LoadTable(context);
+            this.LoadTable(graph);
+            this.LoadTable(stat);
+            //    }
+            //}
         }
 
         internal void ClearDB()

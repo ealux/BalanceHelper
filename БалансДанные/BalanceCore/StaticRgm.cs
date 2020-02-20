@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Balance.Rgm.StaticRgm
-// Assembly: Rgm, Version=1.0.6136.17908, Culture=neutral, PublicKeyToken=null
-// MVID: 526B4102-62C1-4880-A947-0A573489DF22
-// Assembly location: D:\Program Files (x86)\Balance4\plugins\Rgm.dll
-
-using Balance.MathBal;
+﻿using Balance.MathBal;
 using BalanceCore;
 using System;
 using System.Collections.Generic;
@@ -15,7 +9,7 @@ namespace Balance.Rgm
 {
     internal class StaticRgm
     {
-        public Log log{ get; set; }
+        public Log log { get; set; }
         private static string unbalDesc = string.Empty;
         internal static double rt = 0.0;
         internal static double kf = 0.0;

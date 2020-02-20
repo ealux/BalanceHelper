@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "БалансДанные", "БалансДанные\БалансДанные.csproj", "{A1A595D0-7253-44EA-ADF7-323EA97FA2D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalanceCore", "..\..\ClassLibrary1\ClassLibrary1\BalanceCore.csproj", "{90FE3515-BCD6-4B50-88AF-D5778B172F5E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalanceCore", "БалансДанные\BalanceCore\BalanceCore.csproj", "{90FE3515-BCD6-4B50-88AF-D5778B172F5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

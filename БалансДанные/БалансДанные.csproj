@@ -89,7 +89,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ClassLibrary1\ClassLibrary1\BalanceCore.csproj">
+    <ProjectReference Include="BalanceCore\BalanceCore.csproj">
       <Project>{90fe3515-bcd6-4b50-88af-d5778b172f5e}</Project>
       <Name>BalanceCore</Name>
     </ProjectReference>

@@ -1,0 +1,86 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="graph_general">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msdata:Caption="Название" type="xs:string" default="Значение" minOccurs="0" />
+              <xs:element name="cn" msdata:Caption="Цвет узла" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="cv" msdata:Caption="Цвет ветви" type="xs:int" minOccurs="0" />
+              <xs:element name="bg" msdata:Caption="Фон" type="xs:int" minOccurs="0" />
+              <xs:element name="scale" msdata:Caption="Масштаб" type="xs:double" default="1" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="graph_node">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="x" type="xs:int" minOccurs="0" />
+              <xs:element name="y" type="xs:int" minOccurs="0" />
+              <xs:element name="ny" type="xs:int" minOccurs="0" />
+              <xs:element name="xny" type="xs:int" minOccurs="0" />
+              <xs:element name="yny" type="xs:int" minOccurs="0" />
+              <xs:element name="sta" type="xs:boolean" minOccurs="0" />
+              <xs:element name="gv" type="xs:int" minOccurs="0" />
+              <xs:element name="len" type="xs:int" minOccurs="0" />
+              <xs:element name="v" type="xs:double" minOccurs="0" />
+              <xs:element name="xv" type="xs:int" minOccurs="0" />
+              <xs:element name="yv" type="xs:int" minOccurs="0" />
+              <xs:element name="name" type="xs:string" minOccurs="0" />
+              <xs:element name="xname" type="xs:int" minOccurs="0" />
+              <xs:element name="yname" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="graph_vetv">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ip" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="iq" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="np" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="x1" type="xs:int" minOccurs="0" />
+              <xs:element name="y1" type="xs:int" minOccurs="0" />
+              <xs:element name="x2" type="xs:int" minOccurs="0" />
+              <xs:element name="y2" type="xs:int" minOccurs="0" />
+              <xs:element name="busy" type="xs:boolean" default="false" minOccurs="0" />
+              <xs:element name="ipx" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="ipy" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="iqx" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="iqy" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="pqangle" type="xs:int" minOccurs="0" />
+              <xs:element name="ippq" type="xs:string" default="&quot;&quot;" minOccurs="0" />
+              <xs:element name="iqpq" type="xs:string" default="&quot;&quot;" minOccurs="0" />
+              <xs:element name="sta" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="graph_text">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="type" type="xs:string" minOccurs="0" />
+              <xs:element name="vis" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="col" type="xs:int" default="-16777216" minOccurs="0" />
+              <xs:element name="size" type="xs:unsignedInt" default="12" minOccurs="0" />
+              <xs:element name="font" type="xs:string" default="Arial" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="graph_inscript">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="text" type="xs:string" default="&quot;&quot;" minOccurs="0" />
+              <xs:element name="vis" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="col" type="xs:int" default="-16777216" minOccurs="0" />
+              <xs:element name="size" type="xs:unsignedInt" default="12" minOccurs="0" />
+              <xs:element name="font" type="xs:string" default="Arial" minOccurs="0" />
+              <xs:element name="x" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="y" type="xs:int" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

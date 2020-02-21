@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tables>
+  <Table NameShablon="static.brg">
+	&lt;static&gt;&lt;regim&gt;
+	&lt;name&gt;Значение&lt;/name&gt;
+    &lt;lt&gt;20&lt;/lt&gt;
+	&lt;dp&gt;0.1&lt;/dp&gt;
+	&lt;rt&gt;744&lt;/rt&gt;
+	&lt;kf&gt;1&lt;/kf&gt;
+	&lt;tgf&gt;0&lt;/tgf&gt;
+	&lt;onf&gt;1&lt;/onf&gt;
+	&lt;pf&gt;0.1&lt;/pf&gt;
+	&lt;vmin&gt;20&lt;/vmin&gt;
+	&lt;vmax&gt;20&lt;/vmax&gt;
+	&lt;onv&gt;1&lt;/onv&gt;
+	&lt;sb&gt;0&lt;/sb&gt;
+	&lt;rq&gt;0&lt;/rq&gt;
+	&lt;ru&gt;0&lt;/ru&gt;
+	&lt;onves&gt;1&lt;/onves&gt;
+	&lt;onprib&gt;1&lt;/onprib&gt;
+	&lt;wu&gt;0&lt;/wu&gt;
+  &lt;/regim&gt;
+
+  &lt;ves&gt;
+	&lt;name&gt;Значение&lt;/name&gt;
+	&lt;gm&gt;4&lt;/gm&gt;
+	&lt;facmax&gt;2&lt;/facmax&gt;
+	&lt;mpsev&gt;0.1&lt;/mpsev&gt;
+	&lt;mbrak&gt;0.001&lt;/mbrak&gt;
+	&lt;vesp&gt;1&lt;/vesp&gt;
+	&lt;vesq&gt;1&lt;/vesq&gt;
+	&lt;vesu&gt;1&lt;/vesu&gt;
+	&lt;vesppsev&gt;0.1&lt;/vesppsev&gt;
+	&lt;vesqpsev&gt;0.1&lt;/vesqpsev&gt;
+  &lt;/ves&gt;
+
+  &lt;info&gt;
+    &lt;name&gt;Значение&lt;/name&gt;
+  &lt;/info&gt;
+  
+  &lt;rejection&gt;
+	&lt;name&gt;Значение&lt;/name&gt;
+	&lt;porog&gt;100&lt;/porog&gt;
+	&lt;nodepred&gt;5&lt;/nodepred&gt;
+	&lt;vetvpred&gt;5&lt;/vetvpred&gt;
+	&lt;oniter&gt;3&lt;/oniter&gt;
+  &lt;/rejection&gt;
+
+  &lt;balance&gt;
+	&lt;name&gt;Параметр&lt;/name&gt;
+	&lt;wpos&gt;0&lt;/wpos&gt;
+	lt;wotp&gt;0&lt;/wotp&gt;
+	lt;wsaldo&gt;0&lt;/wsaldo&gt;
+	lt;wotppol&gt;0&lt;/wotppol&gt;
+	lt;wotch&gt;0&lt;/wotch&gt;
+  &lt;/balance&gt;
+  
+&lt;/static&gt;</Table>
+<Table NameShablon="graph.bgr">&lt;graph&gt;
+  &lt;graph_general&gt;
+	&lt;name&gt;Значение&lt;/name&gt;
+    &lt;cn&gt;-16777216&lt;/cn&gt;
+	&lt;cv&gt;-16776961&lt;/cv&gt;
+	&lt;bg&gt;-1&lt;/bg&gt;
+	&lt;scale&gt;1&lt;/scale&gt;
+  &lt;/graph_general&gt;
+
+  &lt;graph_text&gt;
+	&lt;type&gt;ny&lt;/type&gt;
+    &lt;vis&gt;1&lt;/vis&gt;
+	&lt;col&gt;-16777216&lt;/col&gt;
+	&lt;size&gt;10&lt;/size&gt;
+	&lt;font&gt;Arial&lt;/font&gt;
+  &lt;/graph_text&gt;
+  &lt;graph_text&gt;
+	&lt;type&gt;v&lt;/type&gt;
+    &lt;vis&gt;1&lt;/vis&gt;
+	&lt;col&gt;-16777216&lt;/col&gt;
+	&lt;size&gt;10&lt;/size&gt;
+	&lt;font&gt;Arial&lt;/font&gt;
+  &lt;/graph_text&gt;
+  &lt;graph_text&gt;
+	&lt;type&gt;name&lt;/type&gt;
+    &lt;vis&gt;1&lt;/vis&gt;
+	&lt;col&gt;-16777216&lt;/col&gt;
+	&lt;size&gt;10&lt;/size&gt;
+	&lt;font&gt;Arial&lt;/font&gt;
+  &lt;/graph_text&gt;
+  &lt;graph_text&gt;
+	&lt;type&gt;sp&lt;/type&gt;
+    &lt;vis&gt;1&lt;/vis&gt;
+	&lt;col&gt;-16777216&lt;/col&gt;
+	&lt;size&gt;10&lt;/size&gt;
+	&lt;font&gt;Arial&lt;/font&gt;
+  &lt;/graph_text&gt;
+  &lt;graph_text&gt;
+	&lt;type&gt;sq&lt;/type&gt;
+    &lt;vis&gt;1&lt;/vis&gt;
+	&lt;col&gt;-16777216&lt;/col&gt;
+	&lt;size&gt;10&lt;/size&gt;
+	&lt;font&gt;Arial&lt;/font&gt;
+  &lt;/graph_text&gt;
+  &lt;graph_text&gt;
+	&lt;type&gt;ssh&lt;/type&gt;
+    &lt;vis&gt;1&lt;/vis&gt;
+	&lt;col&gt;-16777216&lt;/col&gt;
+	&lt;size&gt;10&lt;/size&gt;
+	&lt;font&gt;Arial&lt;/font&gt;
+  &lt;/graph_text&gt;
+  &lt;graph_text&gt;
+	&lt;type&gt;ippq&lt;/type&gt;
+    &lt;vis&gt;1&lt;/vis&gt;
+	&lt;col&gt;-16777216&lt;/col&gt;
+	&lt;size&gt;10&lt;/size&gt;
+	&lt;font&gt;Arial&lt;/font&gt;
+  &lt;/graph_text&gt;
+  &lt;graph_text&gt;
+	&lt;type&gt;iqpq&lt;/type&gt;
+    &lt;vis&gt;1&lt;/vis&gt;
+	&lt;col&gt;-16777216&lt;/col&gt;
+	&lt;size&gt;10&lt;/size&gt;
+	&lt;font&gt;Arial&lt;/font&gt;
+  &lt;/graph_text&gt;
+&lt;/graph&gt;</Table>
+<Table NameShablon="context.bct">
+	&lt;context&gt;
+	
+	&lt;macrocontext&gt;
+    &lt;form&gt;node&lt;/form&gt;
+    &lt;macrofile&gt;node_vetv_on.bcs&lt;/macrofile&gt;
+    &lt;macrodesc&gt;включить с ветвями&lt;/macrodesc&gt;
+    &lt;default&gt;true&lt;/default&gt;
+  &lt;/macrocontext&gt;
+  
+  &lt;macrocontext&gt;
+    &lt;form&gt;node&lt;/form&gt;
+    &lt;macrofile&gt;node_sel_bound.bcs&lt;/macrofile&gt;
+    &lt;macrodesc&gt;отметить связанные узлы&lt;/macrodesc&gt;
+    &lt;default&gt;true&lt;/default&gt;
+  &lt;/macrocontext&gt;
+  
+  &lt;macrocontext&gt;
+    &lt;form&gt;node&lt;/form&gt;
+    &lt;macrofile&gt;node_sel_off.bcs&lt;/macrofile&gt;
+    &lt;macrodesc&gt;убрать отметку&lt;/macrodesc&gt;
+    &lt;default&gt;true&lt;/default&gt;
+  &lt;/macrocontext&gt;
+  
+  &lt;macrocontext&gt;
+    &lt;form&gt;vetv&lt;/form&gt;
+    &lt;macrofile&gt;vetv_change_ip_iq.bcs&lt;/macrofile&gt;
+    &lt;macrodesc&gt;Переставить N_нач. N_кон.&lt;/macrodesc&gt;
+    &lt;default&gt;true&lt;/default&gt;
+  &lt;/macrocontext&gt;
+  
+  &lt;macrocontext&gt;
+    &lt;form&gt;izmer&lt;/form&gt;
+    &lt;macrofile&gt;izmer_load_psevdo.bcs&lt;/macrofile&gt;
+    &lt;macrodesc&gt;Загрузить псевдоизмерения&lt;/macrodesc&gt;
+    &lt;default&gt;true&lt;/default&gt;
+  &lt;/macrocontext&gt;
+  
+  &lt;macrocontext&gt;
+    &lt;form&gt;izmerd&lt;/form&gt;
+    &lt;macrofile&gt;izmer_load_psevdo.bcs&lt;/macrofile&gt;
+    &lt;macrodesc&gt;Загрузить псевдоизмерения&lt;/macrodesc&gt;
+    &lt;default&gt;true&lt;/default&gt;
+  &lt;/macrocontext&gt;
+  
+  &lt;macrocontext&gt;
+    &lt;form&gt;izmer&lt;/form&gt;
+    &lt;macrofile&gt;izmer_unload_psevdo.bcs&lt;/macrofile&gt;
+    &lt;macrodesc&gt;Выгрузить псевдоизмерения&lt;/macrodesc&gt;
+    &lt;default&gt;true&lt;/default&gt;
+  &lt;/macrocontext&gt;
+  
+  
+  
+&lt;/context&gt;</Table>
+</Tables>

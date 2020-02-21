@@ -1,0 +1,432 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="static" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="static" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="node" msdata:Prefix="Узлы">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="sta" msdata:Caption="S" msdata:Prefix="Состояние_узла" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="ny" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msdata:Caption="Номер" msdata:Prefix="Номер_узла" type="xs:int" />
+              <xs:element name="tip" msdata:Caption="Тип" msdata:Prefix="Тип_узла" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="name" msdata:Caption="Название" msdata:Prefix="Название_узла" type="xs:string" minOccurs="0" />
+              <xs:element name="na" msdata:Caption="Район" msdata:Prefix="Номер_района" type="xs:int" minOccurs="0" />
+              <xs:element name="uhom" msdata:Caption="Uном" msdata:Prefix="Номинальное_напряжение" type="xs:double" minOccurs="0" />
+              <xs:element name="uizm" msdata:Caption="Uизм" msdata:Prefix="Измеренное_напряжение" type="xs:double" minOccurs="0" />
+              <xs:element name="g" msdata:Caption="Gш" msdata:Prefix="Проводимость_шунта_G" type="xs:double" minOccurs="0" />
+              <xs:element name="b" msdata:Caption="Bш" msdata:Prefix="Проводимость_шунта_B" type="xs:double" minOccurs="0" />
+              <xs:element name="pg" msdata:Caption="Pген" msdata:Prefix="Мощность_генерации_Р" type="xs:double" minOccurs="0" />
+              <xs:element name="qg" msdata:Caption="Qген" msdata:Prefix="Мощность_генерации_Q" type="xs:double" minOccurs="0" />
+              <xs:element name="pn" msdata:Caption="Pнаг" msdata:Prefix="Мощность_нагрузки_Р" type="xs:double" minOccurs="0" />
+              <xs:element name="qn" msdata:Caption="Qнаг" msdata:Prefix="Мощность_нагрузки_Q" type="xs:double" minOccurs="0" />
+              <xs:element name="pmin" msdata:Caption="Pмин" msdata:Prefix="Минимальная_генерация_P" type="xs:double" minOccurs="0" />
+              <xs:element name="pmax" msdata:Caption="Pмак" msdata:Prefix="Максимальная_генерация_Р" type="xs:double" minOccurs="0" />
+              <xs:element name="qmin" msdata:Caption="Qмин" msdata:Prefix="Минимальная_генерация_Q" type="xs:double" minOccurs="0" />
+              <xs:element name="qmax" msdata:Caption="Qмак" msdata:Prefix="Максимальная_генерация_Q" type="xs:double" minOccurs="0" />
+              <xs:element name="vras" msdata:Caption="V" msdata:Prefix="Расчетный_модуль_напряжения" type="xs:double" minOccurs="0" />
+              <xs:element name="pizmp" msdata:Caption="Pизм.п" type="xs:double" minOccurs="0" />
+              <xs:element name="pizmo" msdata:Caption="Pизм.о" type="xs:double" minOccurs="0" />
+              <xs:element name="qizmp" msdata:Caption="Qизм.п" type="xs:double" minOccurs="0" />
+              <xs:element name="qizmo" msdata:Caption="Qизм.о" type="xs:double" minOccurs="0" />
+              <xs:element name="pizmpd" msdata:Caption="Pизм.п.д" type="xs:double" minOccurs="0" />
+              <xs:element name="pizmod" msdata:Caption="Pизм.о.д" type="xs:double" minOccurs="0" />
+              <xs:element name="qizmpd" msdata:Caption="Qизм.п.д" type="xs:double" minOccurs="0" />
+              <xs:element name="qizmod" msdata:Caption="Qизм.o.д" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogtt" msdata:Caption="Погр. ТТ,%" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogtt" msdata:Caption="Погр. ТТ,%" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogtn" msdata:Caption="Погр. ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogtn" msdata:Caption="Погр. ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogstn" msdata:Caption="Погр. связи ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogstn" msdata:Caption="Погр. связи ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogprib" msdata:Caption="Погр. прибора, %" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogprib" msdata:Caption="Погр. прибора, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogdop" msdata:Caption="Погр. доп, %" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogdop" msdata:Caption="Погр. доп, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogttd" msdata:Caption="Погр. ТТ д,%" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogttd" msdata:Caption="Погр. ТТ д,%" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogtnd" msdata:Caption="Погр. ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogtnd" msdata:Caption="Погр. ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogstnd" msdata:Caption="Погр. связи ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogstnd" msdata:Caption="Погр. связи ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogpribd" msdata:Caption="Погр. прибора д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogpribd" msdata:Caption="Погр. прибора д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogdopd" msdata:Caption="Погр. доп. д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogdopd" msdata:Caption="Погр. доп. д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="gsvn" msdata:Caption="Группа связности" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="pnab" msdata:Caption="Наблюдаемость" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="qnab" msdata:Caption="Наблюдаемость" type="xs:boolean" minOccurs="0" />
+              <xs:element name="pbrak" msdata:Caption="Отбраковка P" type="xs:int" default="0" />
+              <xs:element name="qbrak" msdata:Caption="Отбраковка Q" type="xs:int" default="0" />
+              <xs:element name="_p" type="xs:double" minOccurs="0" />
+              <xs:element name="_q" type="xs:double" minOccurs="0" />
+              <xs:element name="_g" type="xs:double" minOccurs="0" />
+              <xs:element name="_b" type="xs:double" minOccurs="0" />
+              <xs:element name="_uhom" type="xs:double" minOccurs="0" />
+              <xs:element name="_eq" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ppogfull" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogfull" type="xs:double" minOccurs="0" />
+              <xs:element name="_kt" type="xs:double" minOccurs="0" />
+              <xs:element name="psh" type="xs:double" minOccurs="0" />
+              <xs:element name="qsh" type="xs:double" minOccurs="0" />
+              <xs:element name="pogtn" type="xs:double" minOccurs="0" />
+              <xs:element name="pogtnfull" type="xs:double" minOccurs="0" />
+              <xs:element name="pogtnves" type="xs:double" minOccurs="0" />
+              <xs:element name="pgpsev" type="xs:double" minOccurs="0" />
+              <xs:element name="qgpsev" type="xs:double" minOccurs="0" />
+              <xs:element name="pnpsev" type="xs:double" minOccurs="0" />
+              <xs:element name="qnpsev" type="xs:double" minOccurs="0" />
+              <xs:element name="pmainves" type="xs:double" minOccurs="0" />
+              <xs:element name="qmainves" type="xs:double" minOccurs="0" />
+              <xs:element name="ppogfulld" type="xs:double" minOccurs="0" />
+              <xs:element name="qpogfulld" type="xs:double" minOccurs="0" />
+              <xs:element name="pmainvesd" type="xs:double" minOccurs="0" />
+              <xs:element name="qmainvesd" type="xs:double" minOccurs="0" />
+              <xs:element name="pmainvessred" type="xs:double" minOccurs="0" />
+              <xs:element name="qmainvessred" type="xs:double" minOccurs="0" />
+              <xs:element name="psred" type="xs:double" minOccurs="0" />
+              <xs:element name="qsred" type="xs:double" minOccurs="0" />
+              <xs:element name="IsPsevdop" type="xs:boolean" minOccurs="0" />
+              <xs:element name="IsPsevdoq" type="xs:boolean" minOccurs="0" />
+              <xs:element name="IsUnom" type="xs:boolean" minOccurs="0" />
+              <xs:element name="dp_shunt" msdata:Caption="dP_Ш" type="xs:double" minOccurs="0" />
+              <xs:element name="dq_shunt" msdata:Caption="dQ_Ш" type="xs:double" minOccurs="0" />
+              <xs:element name="dp_line" msdata:Caption="dp_ЛЭП" type="xs:double" minOccurs="0" />
+              <xs:element name="dq_line" msdata:Caption="dq_ЛЭП" type="xs:double" minOccurs="0" />
+              <xs:element name="shp_line" type="xs:double" minOccurs="0" />
+              <xs:element name="shq_line" type="xs:double" minOccurs="0" />
+              <xs:element name="dp_tran" type="xs:double" minOccurs="0" />
+              <xs:element name="dq_tran" type="xs:double" minOccurs="0" />
+              <xs:element name="shp_tran" type="xs:double" minOccurs="0" />
+              <xs:element name="shq_tran" type="xs:double" minOccurs="0" />
+              <xs:element name="sel" msdata:Caption="O" type="xs:boolean" minOccurs="0" />
+              <xs:element name="pizmp_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="pizmo_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="qizmp_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="qizmo_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="uizm_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="pizmpd_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="pizmod_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="qizmpd_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="qizmod_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="pras" type="xs:double" minOccurs="0" />
+              <xs:element name="qras" type="xs:double" minOccurs="0" />
+              <xs:element name="sta_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="pstatus_izm" type="xs:int" default="1" />
+              <xs:element name="pstatus_izmd" type="xs:int" default="1" />
+              <xs:element name="qstatus_izm" type="xs:int" default="1" />
+              <xs:element name="qstatus_izmd" type="xs:int" default="1" />
+              <xs:element name="precom" type="xs:string" minOccurs="0" />
+              <xs:element name="qrecom" type="xs:string" minOccurs="0" />
+              <xs:element name="prating" type="xs:double" minOccurs="0" />
+              <xs:element name="qrating" type="xs:double" minOccurs="0" />
+              <xs:element name="input" type="xs:double" minOccurs="0" />
+              <xs:element name="output" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="area" msdata:Prefix="Районы">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="sta" msdata:Caption="S" msdata:Prefix="Состояние_района" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="na" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msdata:Caption="Номер" msdata:Prefix="Номер_района" type="xs:int" />
+              <xs:element name="name" msdata:Caption="Название" msdata:Prefix="Название_района" type="xs:string" minOccurs="0" />
+              <xs:element name="dp_shunt" msdata:Caption="dP_Ш" type="xs:double" minOccurs="0" />
+              <xs:element name="dq_shunt" msdata:Caption="dQ_Ш" type="xs:double" minOccurs="0" />
+              <xs:element name="IsUnom" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="dp_line" msdata:Caption="dp_ЛЭП" type="xs:double" minOccurs="0" />
+              <xs:element name="dq_line" msdata:Caption="dq_ЛЭП" type="xs:double" minOccurs="0" />
+              <xs:element name="shp_line" type="xs:double" minOccurs="0" />
+              <xs:element name="shq_line" type="xs:double" minOccurs="0" />
+              <xs:element name="dp_tran" type="xs:double" minOccurs="0" />
+              <xs:element name="dq_tran" type="xs:double" minOccurs="0" />
+              <xs:element name="shp_tran" type="xs:double" minOccurs="0" />
+              <xs:element name="shq_tran" type="xs:double" minOccurs="0" />
+              <xs:element name="pn_line" type="xs:double" minOccurs="0" />
+              <xs:element name="pg_line" type="xs:double" minOccurs="0" />
+              <xs:element name="sel" type="xs:boolean" minOccurs="0" />
+              <xs:element name="pvirras" type="xs:double" minOccurs="0" />
+              <xs:element name="qvirras" type="xs:double" minOccurs="0" />
+              <xs:element name="pvirizm" type="xs:double" minOccurs="0" />
+              <xs:element name="qvirizm" type="xs:double" minOccurs="0" />
+              <xs:element name="potpusk" type="xs:double" minOccurs="0" />
+              <xs:element name="qotpusk" type="xs:double" minOccurs="0" />
+              <xs:element name="pfullpost" type="xs:double" minOccurs="0" />
+              <xs:element name="dp" type="xs:double" minOccurs="0" />
+              <xs:element name="dq" type="xs:double" minOccurs="0" />
+              <xs:element name="ppolotpusk" type="xs:double" minOccurs="0" />
+              <xs:element name="otchetloss" type="xs:double" minOccurs="0" />
+              <xs:element name="dpkom" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vetv" msdata:Prefix="Ветви">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="sta" msdata:Caption="S" msdata:Prefix="Состояние_ветви" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="ip" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msdata:Caption="Nнач" msdata:Prefix="Номер_начала" type="xs:int" />
+              <xs:element name="iq" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msdata:Caption="Nкон" msdata:Prefix="Номер_конца" type="xs:int" />
+              <xs:element name="np" msdata:Caption="Nпаралл" msdata:Prefix="Номер_параллельной" type="xs:int" default="0" />
+              <xs:element name="name" msdata:Caption="Название" msdata:Prefix="Название_ветви" type="xs:string" minOccurs="0" />
+              <xs:element name="na" msdata:Caption="Район" msdata:Prefix="Район_ветви" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="r" msdata:Caption="R" msdata:Prefix="Сопротивление_R" type="xs:double" minOccurs="0" />
+              <xs:element name="x" msdata:Caption="X" msdata:Prefix="Сопротивление_X" type="xs:double" minOccurs="0" />
+              <xs:element name="g" msdata:Caption="G" msdata:Prefix="Проводимость_на_землю_мкСим" type="xs:double" minOccurs="0" />
+              <xs:element name="b" msdata:Caption="B" msdata:Prefix="Проводимость_на_землю_мкСим" type="xs:double" minOccurs="0" />
+              <xs:element name="ktr" msdata:Caption="Kt/r" msdata:Prefix="Вещественная_составляющая_Кт" type="xs:double" minOccurs="0" />
+              <xs:element name="kti" msdata:Caption="Kt/i" msdata:Prefix="Мнимая_составляющая_Кт" type="xs:double" minOccurs="0" />
+              <xs:element name="kr" msdata:Caption="Kрайона" msdata:Prefix="Коэффициент_разнесения_потерь_по_разным_районам" type="xs:double" minOccurs="0" />
+              <xs:element name="ckor" msdata:Caption="CKO/r" msdata:Prefix="Среднеквадратичное_отклонение_активное" type="xs:double" minOccurs="0" />
+              <xs:element name="ckoi" msdata:Caption="CKO/i" msdata:Prefix="Среднеквадратичное_отклонение_реактивное" type="xs:double" minOccurs="0" />
+              <xs:element name="pmin" msdata:Caption="Pmin" msdata:Prefix="Минимальная_активная_мощность_перетока_в_ветви" type="xs:double" minOccurs="0" />
+              <xs:element name="pmax" msdata:Caption="Pmax" msdata:Prefix="Максимальная_активная_мощность_перетока_в_ветви" type="xs:double" minOccurs="0" />
+              <xs:element name="qmin" msdata:Caption="Qmin" msdata:Prefix="Минимальная_реактивная_мощность_перетока_в_ветви" type="xs:double" minOccurs="0" />
+              <xs:element name="qmax" msdata:Caption="Qmax" msdata:Prefix="Максимальная_реактивная_мощность_перетока_в_ветви" type="xs:double" minOccurs="0" />
+              <xs:element name="dp" msdata:Caption="dP" msdata:Prefix="Потери_в_ветви_активные" type="xs:double" minOccurs="0" />
+              <xs:element name="dq" msdata:Caption="dQ" msdata:Prefix="Потери_в_ветви_реактивные" type="xs:double" minOccurs="0" />
+              <xs:element name="totk" msdata:Caption="Totk" msdata:Prefix="Время_отключения_ветви_в_часах" type="xs:double" minOccurs="0" />
+              <xs:element name="sr" msdata:Caption="Sr" msdata:Prefix="Место_установки_сопротивления" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="dpf" msdata:Caption="dPf" msdata:Prefix="Формула_расчета_активных_потерь_в_ветви" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="dqf" msdata:Caption="dQf" msdata:Prefix="Формула_расчета_реактивных_потерь_в_ветви" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="ippizmp" msdata:Caption="Pнач.изм.п" type="xs:double" minOccurs="0" />
+              <xs:element name="ippizmo" msdata:Caption="Pнач.изм.o" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpizmp" msdata:Caption="Pкон.изм.п" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpizmo" msdata:Caption="Pкон.изм.о" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqizmp" msdata:Caption="Qнач.изм.п" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqizmo" msdata:Caption="Qнач.изм.o" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqizmp" msdata:Caption="Qкон.изм.п" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqizmo" msdata:Caption="Qкон.изм.o" type="xs:double" minOccurs="0" />
+              <xs:element name="ippizmpd" msdata:Caption="Pнач.изм.п.д" type="xs:double" minOccurs="0" />
+              <xs:element name="ippizmod" msdata:Caption="Pнач.изм.o.д" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpizmpd" msdata:Caption="Pкон.изм.п.д" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpizmod" msdata:Caption="Pкон.изм.о.д" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqizmpd" msdata:Caption="Qнач.изм.п.д" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqizmod" msdata:Caption="Qнач.изм.o.д" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqizmpd" msdata:Caption="Qкон.изм.п.д" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqizmod" msdata:Caption="Qкон.изм.o.д" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogtt" msdata:Caption="Погр. ТТ,%" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogtt" msdata:Caption="Погр. ТТ,%" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogtt" msdata:Caption="Погр. ТТ,%" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogtt" msdata:Caption="Погр. ТТ,%" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogtn" msdata:Caption="Погр. ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogtn" msdata:Caption="Погр. ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogtn" msdata:Caption="Погр. ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogtn" msdata:Caption="Погр. ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogstn" msdata:Caption="Погр. связи ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogstn" msdata:Caption="Погр. связи ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogstn" msdata:Caption="Погр. связи ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogstn" msdata:Caption="Погр. связи ТН, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogprib" msdata:Caption="Погр. прибора, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogprib" msdata:Caption="Погр. прибора, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogprib" msdata:Caption="Погр. прибора, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogprib" msdata:Caption="Погр. прибора, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogdop" msdata:Caption="Погр. доп, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogdop" msdata:Caption="Погр. доп, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogdop" msdata:Caption="Погр. доп, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogdop" msdata:Caption="Погр. доп, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogttd" msdata:Caption="Погр. ТТ д,%" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogttd" msdata:Caption="Погр. ТТ д,%" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogttd" msdata:Caption="Погр. ТТ д,%" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogttd" msdata:Caption="Погр. ТТ д,%" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogtnd" msdata:Caption="Погр. ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogtnd" msdata:Caption="Погр. ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogtnd" msdata:Caption="Погр. ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogtnd" msdata:Caption="Погр. ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogstnd" msdata:Caption="Погр. связи ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogstnd" msdata:Caption="Погр. связи ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogstnd" msdata:Caption="Погр. связи ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogstnd" msdata:Caption="Погр. связи ТН д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogpribd" msdata:Caption="Погр. прибора д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogpribd" msdata:Caption="Погр. прибора д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogpribd" msdata:Caption="Погр. прибора д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogpribd" msdata:Caption="Погр. прибора д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogdopd" msdata:Caption="Погр. доп. д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogdopd" msdata:Caption="Погр. доп. д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogdopd" msdata:Caption="Погр. доп. д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogdopd" msdata:Caption="Погр. доп. д, %" type="xs:double" minOccurs="0" />
+              <xs:element name="gsvn" msdata:Caption="Группа связности" type="xs:unsignedInt" minOccurs="0" />
+              <xs:element name="pnab" msdata:Caption="Наблюдаемость" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="qnab" msdata:Caption="Наблюдаемость" type="xs:boolean" default="true" minOccurs="0" />
+              <xs:element name="ippbrak" msdata:Caption="Отбраковка Pнач" type="xs:int" default="0" />
+              <xs:element name="iqpbrak" msdata:Caption="Отбраковка Pкон" type="xs:int" default="0" />
+              <xs:element name="ipqbrak" msdata:Caption="Отбраковка Qнач" type="xs:int" default="0" />
+              <xs:element name="iqqbrak" msdata:Caption="Отбраковка Qкон" type="xs:int" default="0" />
+              <xs:element name="_ipp" type="xs:double" minOccurs="0" />
+              <xs:element name="_iqp" type="xs:double" minOccurs="0" />
+              <xs:element name="_ipq" type="xs:double" minOccurs="0" />
+              <xs:element name="_iqq" type="xs:double" minOccurs="0" />
+              <xs:element name="_r" type="xs:double" minOccurs="0" />
+              <xs:element name="_x" type="xs:double" minOccurs="0" />
+              <xs:element name="_g" type="xs:double" minOccurs="0" />
+              <xs:element name="_b" type="xs:double" minOccurs="0" />
+              <xs:element name="_eq" type="xs:boolean" minOccurs="0" />
+              <xs:element name="_dpf" type="xs:int" minOccurs="0" />
+              <xs:element name="_dqf" type="xs:int" minOccurs="0" />
+              <xs:element name="ipppogfull" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogfull" type="xs:double" minOccurs="0" />
+              <xs:element name="ipp" msdata:Caption="P_нач" type="xs:double" minOccurs="0" />
+              <xs:element name="ipq" msdata:Caption="Q_нач" type="xs:double" minOccurs="0" />
+              <xs:element name="iqp" msdata:Caption="P_кон" type="xs:double" minOccurs="0" />
+              <xs:element name="iqq" msdata:Caption="Q_кон" type="xs:double" minOccurs="0" />
+              <xs:element name="_totk" type="xs:double" minOccurs="0" />
+              <xs:element name="dpconst" type="xs:double" minOccurs="0" />
+              <xs:element name="dqconst" type="xs:double" minOccurs="0" />
+              <xs:element name="psh" msdata:Caption="Pш" type="xs:double" minOccurs="0" />
+              <xs:element name="qsh" msdata:Caption="Qш" type="xs:double" minOccurs="0" />
+              <xs:element name="ippmainves" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpmainves" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqmainves" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqmainves" type="xs:double" minOccurs="0" />
+              <xs:element name="ipppogfulld" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogfull" type="xs:double" minOccurs="0" />
+              <xs:element name="iqppogfulld" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqpogfulld" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogfull" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqpogfulld" type="xs:double" minOccurs="0" />
+              <xs:element name="ippmainvesd" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpmainvesd" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqmainvesd" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqmainvesd" type="xs:double" minOccurs="0" />
+              <xs:element name="ippmainvessred" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpmainvessred" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqmainvessred" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqmainvessred" type="xs:double" minOccurs="0" />
+              <xs:element name="ippsred" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpsred" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqsred" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqsred" type="xs:double" minOccurs="0" />
+              <xs:element name="ipna" type="xs:int" minOccurs="0" />
+              <xs:element name="iqna" type="xs:int" minOccurs="0" />
+              <xs:element name="sel" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ippizmp_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="ippizmo_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="iqpizmp_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="iqpizmo_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="ipqizmp_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="ipqizmo_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="iqqizmp_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="iqqizmo_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="ippizmpd_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="ippizmod_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpizmpd_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="iqpizmod_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqizmpd_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqizmod_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqizmpd_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqizmod_excel" type="xs:double" minOccurs="0" />
+              <xs:element name="dpconst_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="dqconst_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="ckor_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="ckoi_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="totk_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="sta_excel" type="xs:string" minOccurs="0" />
+              <xs:element name="ippstatus_izm" type="xs:int" default="1" />
+              <xs:element name="iqpstatus_izm" type="xs:int" default="1" />
+              <xs:element name="ippstatus_izmd" type="xs:int" default="1" />
+              <xs:element name="iqpstatus_izmd" type="xs:int" default="1" />
+              <xs:element name="ipqstatus_izm" type="xs:int" default="1" />
+              <xs:element name="iqqstatus_izm" type="xs:int" default="1" />
+              <xs:element name="ipqstatus_izmd" type="xs:int" default="1" />
+              <xs:element name="iqqstatus_izmd" type="xs:int" default="1" />
+              <xs:element name="ipprecom" type="xs:string" minOccurs="0" />
+              <xs:element name="iqprecom" type="xs:string" minOccurs="0" />
+              <xs:element name="ipqrecom" type="xs:string" minOccurs="0" />
+              <xs:element name="iqqrecom" type="xs:string" minOccurs="0" />
+              <xs:element name="ipprating" type="xs:double" minOccurs="0" />
+              <xs:element name="iqprating" type="xs:double" minOccurs="0" />
+              <xs:element name="ipqrating" type="xs:double" minOccurs="0" />
+              <xs:element name="iqqrating" type="xs:double" minOccurs="0" />
+              <xs:element name="input" type="xs:double" minOccurs="0" />
+              <xs:element name="output" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="info" msdata:Prefix="Информация">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msdata:ReadOnly="true" msdata:Caption="Название" msdata:Prefix="Заголовок_название" type="xs:string" default="Значение" minOccurs="0" />
+              <xs:element name="ny" msdata:Caption="Узлов" msdata:Prefix="Колличество_узлов" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="nv" msdata:Caption="Ветвей" type="xs:unsignedInt" default="0" minOccurs="0" />
+              <xs:element name="na" msdata:Caption="Районов" type="xs:int" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="regim" msdata:Prefix="Режим">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msdata:ReadOnly="true" msdata:Caption="Название" type="xs:string" default="Значение" />
+              <xs:element name="lt" msdata:Caption="Максимальное число итераций" type="xs:unsignedInt" default="20" />
+              <xs:element name="dp" msdata:Caption="Точность расчета" type="xs:double" default="1" />
+              <xs:element name="rt" msdata:Caption="Расчетный период(ч)" type="xs:double" default="1" minOccurs="0" />
+              <xs:element name="kf" msdata:Caption="Коэффициент формы" type="xs:double" minOccurs="0" />
+              <xs:element name="tgf" msdata:Caption="Тангенс f" type="xs:double" minOccurs="0" />
+              <xs:element name="pf" msdata:Caption="Мощность фиксации" type="xs:double" minOccurs="0" />
+              <xs:element name="onf" msdata:Caption="Вкл. фиксацию" type="xs:int" minOccurs="0" />
+              <xs:element name="vmin" msdata:Caption="Макс. допустимое снижение V(%)" type="xs:int" default="10" minOccurs="0" />
+              <xs:element name="vmax" msdata:Caption="Макс. допустимое превышение V(%)" type="xs:int" default="10" minOccurs="0" />
+              <xs:element name="onv" msdata:Caption="Вкл. контроль напр." type="xs:int" minOccurs="0" />
+              <xs:element name="sb" msdata:Caption="Вкл. отбраковку" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="rq" msdata:Caption="Вкл. расчет по реакт. мощности" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="ru" msdata:Caption="Вкл. расчет по напряжениям" type="xs:int" default="1" minOccurs="0" />
+              <xs:element name="onves" msdata:Caption="Вкл. вес. коэфф." type="xs:int" minOccurs="0" />
+              <xs:element name="onprib" msdata:Caption="Брать нач. приб. из расчета" type="xs:int" minOccurs="0" />
+              <xs:element name="wu" msdata:Caption="Рабочие единицы" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ves" msdata:Prefix="Взвешивание">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msdata:Caption="Название" type="xs:string" default="Название" minOccurs="0" />
+              <xs:element name="gm" msdata:Caption="Глуб. масшт." type="xs:double" default="4" minOccurs="0" />
+              <xs:element name="facmax" msdata:Caption="Множитель максимального" type="xs:double" default="2" minOccurs="0" />
+              <xs:element name="vesp" msdata:Caption="Вес. коэфф. P" type="xs:double" default="1" minOccurs="0" />
+              <xs:element name="vesq" msdata:Caption="Вес. коэфф. Q" type="xs:double" default="1" minOccurs="0" />
+              <xs:element name="vesu" msdata:Caption="Вес. коэфф. U" type="xs:double" default="1" minOccurs="0" />
+              <xs:element name="mpsev" msdata:Caption="Множитель псевдо" type="xs:double" default="0.1" minOccurs="0" />
+              <xs:element name="mbrak" msdata:Caption="Множитель отбракованного" type="xs:double" default="0.001" minOccurs="0" />
+              <xs:element name="vesppsev" msdata:Caption="Вес. коэфф. P псевдо" type="xs:double" default="0.1" minOccurs="0" />
+              <xs:element name="vesqpsev" msdata:Caption="Вес. коэфф. Q псевдо" type="xs:double" default="0.1" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rejection" msdata:CaseSensitive="False" msdata:MinimumCapacity="1" msdata:Prefix="Отбраковка">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msdata:ReadOnly="true" msdata:Caption="Название" type="xs:string" default="Значение" minOccurs="0" />
+              <xs:element name="porog" msdata:Caption="Порог (%)" type="xs:int" default="100" />
+              <xs:element name="nodepred" msdata:Caption="Предел отбраковки узлов" type="xs:unsignedInt" default="1" minOccurs="0" />
+              <xs:element name="vetvpred" msdata:Caption="Предел отбраковки ветвей" type="xs:unsignedInt" default="1" minOccurs="0" />
+              <xs:element name="oniter" msdata:Caption="Разрешить с итерации" type="xs:unsignedInt" default="3" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="balance" msdata:MinimumCapacity="1" msdata:Prefix="Баланс">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msdata:ReadOnly="true" msdata:Caption="Параметр" type="xs:string" default="Объем электроэнергии за отчетный период" minOccurs="0" />
+              <xs:element name="wpos" msdata:Caption="Поступление электроэнергии в сеть, в т.ч." type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="wotp" msdata:Caption="Отпуск электроэнергии в сеть, в т.ч." type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="wsaldo" msdata:Caption="Сальдо электроэнергии по сети" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="wotppol" msdata:Caption="Полезный отпуск электроэнергии" type="xs:double" default="0" minOccurs="0" />
+              <xs:element name="wotch" msdata:Caption="Отчётные потери электроэнергии" type="xs:double" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//node" />
+      <xs:field xpath="ny" />
+    </xs:unique>
+    <xs:unique name="area_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//area" />
+      <xs:field xpath="na" />
+    </xs:unique>
+    <xs:unique name="vetv_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//vetv" />
+      <xs:field xpath="ip" />
+      <xs:field xpath="iq" />
+      <xs:field xpath="np" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

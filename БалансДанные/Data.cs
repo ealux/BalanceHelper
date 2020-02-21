@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace БалансДанные
 {
-    class Data
+    internal class Data
     {
         public static Data BaseData { get; set; } //Base Data to replicate
 
@@ -12,6 +12,7 @@ namespace БалансДанные
 
         //private XmlNode FinalNode { get; set; } //Level Table - Итоговый тип BalanceXML формат
         public List<Node> Nodes { get; set; } = new List<Node>();
+
         public List<Branch> Branches { get; set; } = new List<Branch>();
 
         private static void AddData<T>(List<T> source, T t) => source.Add(t);
@@ -34,7 +35,6 @@ namespace БалансДанные
                         AddData(BaseData.Branches, new Branch(s));
                     }
                 }
-
             }
         }
 
@@ -80,7 +80,7 @@ namespace БалансДанные
             data.SourceNode.Attributes["Id"].Value = step.ToString();
             data.SourceNode.Attributes["Name"].Value = step.ToString();
             data.SourceNode.Attributes["DataFile"].Value = Form1.pathexcel.Text;
-            data.SourceNode.Attributes["ColId"].Value = (step+1).ToString();
+            data.SourceNode.Attributes["ColId"].Value = (step + 1).ToString();
 
             //Regim data prepare
             foreach (var e in exc)
@@ -167,7 +167,7 @@ namespace БалансДанные
                     if (source.Name == "node" && source["ny"].InnerText == n.Number.ToString())
                         source.InnerXml =
                            n.SourceNode.InnerXml;
-                           //SourceNode.ChildNodes[0].ReplaceChild(source, n.SourceNode.Clone());
+                    //SourceNode.ChildNodes[0].ReplaceChild(source, n.SourceNode.Clone());
                 }
             }
             foreach (Branch b in this.Branches)
@@ -175,8 +175,8 @@ namespace БалансДанные
                 b.PrepareSourceNode();
                 foreach (XmlNode source in this.SourceNode.ChildNodes[0].ChildNodes)
                 {
-                    if (source.Name == "vetv" && 
-                        (source["ip"].InnerText == b.NumberStart.ToString()&
+                    if (source.Name == "vetv" &&
+                        (source["ip"].InnerText == b.NumberStart.ToString() &
                          source["iq"].InnerText == b.NumberEnd.ToString())) source.InnerXml = b.SourceBranch.InnerXml;
                 }
             }
@@ -189,8 +189,10 @@ namespace БалансДанные
     {
         //Источник
         public XmlNode SourceNode { get; set; }
+
         //
         public int? Number { get; set; }
+
         public string Name { get; set; } = "";
         public double? Pout { get; set; }
         public double? Pin { get; set; }
@@ -206,20 +208,25 @@ namespace БалансДанные
                     case "ny":
                         this.Number = Int32.Parse(node.InnerText);
                         break;
+
                     case "name":
                         this.Name = node.InnerText;
                         break;
+
                     case "pizmp":
                         if (node.InnerText.Contains(".")) this.Pin = Double.Parse(node.InnerText.Replace(".", ","));
                         else this.Pin = Double.Parse(node.InnerText);
                         break;
+
                     case "pizmo":
                         if (node.InnerText.Contains(".")) this.Pout = Double.Parse(node.InnerText.Replace(".", ","));
                         else this.Pout = Double.Parse(node.InnerText);
                         break;
+
                     case "pizmp_excel":
                         this.ExcelPin = node.InnerText;
                         break;
+
                     case "pizmo_excel":
                         this.ExcelPout = node.InnerText;
                         break;
@@ -227,7 +234,9 @@ namespace БалансДанные
             }
         }
 
-        public Node(){}
+        public Node()
+        {
+        }
 
         public Node(XmlNode source)
         {
@@ -245,6 +254,7 @@ namespace БалансДанные
                         if (this.Pin.ToString().Contains(",")) node.InnerText = this.Pin.ToString().Replace(",", ".");
                         else node.InnerText = this.Pin.ToString();
                         break;
+
                     case "pizmo":
                         if (this.Pout.ToString().Contains(",")) node.InnerText = this.Pout.ToString().Replace(",", ".");
                         else node.InnerText = this.Pout.ToString();
@@ -258,8 +268,10 @@ namespace БалансДанные
     {
         //Источник
         public XmlNode SourceBranch { get; set; }
+
         //
         public int? NumberStart { get; set; }
+
         public int? NumberEnd { get; set; }
         public string Name { get; set; }
         public double? Pout { get; set; }
@@ -276,47 +288,86 @@ namespace БалансДанные
                     case "ip":
                         this.NumberStart = Int32.Parse(branch.InnerText);
                         break;
+
                     case "iq":
                         this.NumberEnd = Int32.Parse(branch.InnerText);
                         break;
+
                     case "name":
                         this.Name = branch.InnerText;
                         break;
+
+                    case "iqpizmp":
+                        if (branch.InnerText.Contains(".")) this.Pin = Double.Parse(branch.InnerText.Replace(".", ","));
+                        else this.Pin = Double.Parse(branch.InnerText);
+                        break;
+
                     case "ippizmp":
                         if (branch.InnerText.Contains(".")) this.Pin = Double.Parse(branch.InnerText.Replace(".", ","));
                         else this.Pin = Double.Parse(branch.InnerText);
                         break;
+
+                    case "iqpizmo":
+                        if (branch.InnerText.Contains(".")) this.Pout = Double.Parse(branch.InnerText.Replace(".", ","));
+                        else this.Pout = Double.Parse(branch.InnerText);
+                        break;
+
                     case "ippizmo":
                         if (branch.InnerText.Contains(".")) this.Pout = Double.Parse(branch.InnerText.Replace(".", ","));
                         else this.Pout = Double.Parse(branch.InnerText);
                         break;
+
+                    case "iqpizmp_excel":
+                        this.ExcelPin = branch.InnerText;
+                        break;
+
                     case "ippizmp_excel":
                         this.ExcelPin = branch.InnerText;
                         break;
+
                     case "ippizmo_excel":
+                        this.ExcelPout = branch.InnerText;
+                        break;
+
+                    case "iqpizmo_excel":
                         this.ExcelPout = branch.InnerText;
                         break;
                 }
             }
         }
 
-        public Branch(){}
+        public Branch()
+        {
+        }
+
         public Branch(XmlNode source)
         {
             this.SourceBranch = source.Clone();
             Initialize();
         }
+
         public void PrepareSourceNode()
         {
             foreach (XmlNode node in SourceBranch)
             {
                 switch (node.Name)
                 {
+                    case "iqpizmp":
+                        if (this.Pin.ToString().Contains(",")) node.InnerText = this.Pin.ToString().Replace(",", ".");
+                        else node.InnerText = this.Pin.ToString();
+                        break;
+
                     case "ippizmp":
                         if (this.Pin.ToString().Contains(",")) node.InnerText = this.Pin.ToString().Replace(",", ".");
                         else node.InnerText = this.Pin.ToString();
                         break;
+
                     case "ippizmo":
+                        if (this.Pout.ToString().Contains(",")) node.InnerText = this.Pout.ToString().Replace(",", ".");
+                        else node.InnerText = this.Pout.ToString();
+                        break;
+
+                    case "iqpizmo":
                         if (this.Pout.ToString().Contains(",")) node.InnerText = this.Pout.ToString().Replace(",", ".");
                         else node.InnerText = this.Pout.ToString();
                         break;
@@ -330,5 +381,5 @@ namespace БалансДанные
         }
     }
 
-    #endregion
+    #endregion SubTypes
 }

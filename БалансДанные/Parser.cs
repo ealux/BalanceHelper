@@ -1,14 +1,14 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-using OfficeOpenXml;
 
 namespace БалансДанные
 {
-    static class Parser
+    internal static class Parser
     {
         /// <summary>
         /// Конвертация файла .bbr в нормальный XLM файл и обратно
@@ -18,7 +18,6 @@ namespace БалансДанные
         ///                     если false - замена скобок на lt; и gt;</param>
         public static void ToXmlConverter(string path)
         {
-
             StreamReader streamR = new StreamReader(path);
 
             string s;
@@ -125,21 +124,7 @@ namespace БалансДанные
                 }
                 else continue;
             }
-
-            //Additional xmlNodes upon complete DataGrid cells
-            if (Rows.Count > 0)
-            {
-                foreach (var row in Rows)
-                {
-                    if (row.Item2 == 0)
-                    {
-
-                    }
-                }
-            }
-
             return Rows;
-
         }
 
         public static List<XmlNode> DataParserHelper(List<Tuple<int, int, bool, bool>> Rows)
@@ -166,9 +151,16 @@ namespace БалансДанные
 
             List<ExcData> excDatas = new List<ExcData>();
 
-            foreach (var row in Rows)
+            try
             {
-                excDatas.Add(new ExcData(row, Form1.data, p));
+                foreach (var row in Rows)
+                {
+                    excDatas.Add(new ExcData(row, Form1.data, p));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
 
             //Find max capacity of Excel data
@@ -178,7 +170,10 @@ namespace БалансДанные
             {
                 maxCapasity = x.PinData.Count > 0 ? x.PinData.Count : x.PoutData.Count;
             }
-            if (maxCapasity == 0) MessageBox.Show("Данные Excel отсутствуетют");
+            if (maxCapasity == 0)
+            {
+                throw new Exception("Данные Excel отсутствуют!");     
+            }
 
             //Create new Data
             List<XmlNode> datas = new List<XmlNode>();
@@ -190,7 +185,5 @@ namespace БалансДанные
 
             return datas;
         }
-
     }
 }
-

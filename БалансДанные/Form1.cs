@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BalanceCore;
+using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
-using OfficeOpenXml;
 
 namespace БалансДанные
 {
@@ -16,6 +17,9 @@ namespace БалансДанные
         public static Label lblCount { get; set; }
         public static List<XmlNode> datas { get; set; }
         public static string path { get; set; }
+        private FileInfo buffer { get; set; }
+        public Log Log { get; set; }
+
         public Form1()
         {
             InitializeComponent();
@@ -23,28 +27,42 @@ namespace БалансДанные
             pathexcel = this.pathExcel;
             txtCount = this.TxtCount;
             lblCount = this.LblCount;
-
-
+            Log = new Log(this.logBox);
             button1.Enabled = false;
+
+            Log.AddMessage("Добро пожаловать в Balance Helper!\n", Log.MessageType.Info);
+
+            this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
         }
+
         //Это комент
 
         #region Table #1
 
+        //OPEN TEMPLATE BUTTON
         private void opnTempl_Click(object sender, EventArgs e)
         {
-            string path = ExcelAdapter.Open(IsExcel: false)?[0] ;
+            this.dataPresenter.Rows.Clear();
+
+            string path = ExcelAdapter.Open(IsExcel: false)?[0];
             if (path == null) return;
+
+            Log.AddMessage("Успешно прочитан файл: " + path, Log.MessageType.Success);
 
             pathTempl.Text = path;
 
             //TODO:Think about BaseData replace into MainButton procedure!
 
-            Parser.ToXmlConverter(path);
-            Data.InitBaseData(Parser.PrepareXml(path)); //Create Base Regim
-            Data.BaseData.DataRepresenter(); //Represent Base Regim
+            FileInfo buffer = new FileInfo(path);
+            if (File.Exists(path + "buffer")) File.Delete(path + "buffer");
+            buffer = buffer.CopyTo(path + "buffer");
 
-            button1.Enabled = true;
+            Parser.ToXmlConverter(buffer.FullName);
+            Data.InitBaseData(Parser.PrepareXml(buffer.FullName)); //Create Base Regim
+            Data.BaseData.DataRepresenter();            //Represent Base Regim
+
+            if (String.IsNullOrEmpty(pathexcel.Text) | String.IsNullOrEmpty(pathTempl.Text)) button1.Enabled = false;
+            else button1.Enabled = true;
         }
 
         //MAIN WORK BUTTON
@@ -56,25 +74,47 @@ namespace БалансДанные
             {
                 col = Convert.ToInt16(txtCount.Text);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 MessageBox.Show("Ошибка ввода количества значений или значений в Excel");
+                Log.AddMessage("Ошибка ввода количества значений или значений в Excel", Log.MessageType.Error);
                 return;
             }
 
             if (col <= 0)
             {
                 MessageBox.Show("Ошибка ввода количества значений или значений в Excel");
+                Log.AddMessage("Ошибка ввода количества значений или значений в Excel", Log.MessageType.Error);
                 return;
             }
 
-            datas = Parser.DataParserHelper(Parser.DataGridParser(data));
-            datas = datas.Take(col).ToList();
-
-            path = pathTempl.Text;
+            Log.AddMessage("Подготовка данных...", Log.MessageType.Info);
 
             XmlDocument xml = new XmlDocument();
-            xml.Load(path);
+            path = pathTempl.Text;
+            if (!File.Exists(path + "buffer"))
+            {
+                buffer = new FileInfo(path);
+                buffer = buffer.CopyTo(path + "buffer");
+            }
+            else buffer = new FileInfo(path + "buffer");
+
+            try
+            {
+                Parser.ToXmlConverter(buffer.FullName);
+                Data.InitBaseData(Parser.PrepareXml(buffer.FullName)); //Create Base Regim
+                datas = Parser.DataParserHelper(Parser.DataGridParser(data));
+                datas = datas.Take(col).ToList();
+
+                xml.Load(buffer.FullName);
+            }
+            catch (Exception ex)
+            {
+                Log.AddMessage("Ошибка данных в Excel! Возможно несовпадение структуры данных значениям в ячейках! Проверьте ссылки!", Log.MessageType.Error);
+                Log.AddMessage("Данные по ошибке: " + ex.Message, Log.MessageType.Error);
+                File.Delete(buffer.FullName);
+                return;
+            }
 
             //УРОВЕНЬ <Tables>
             XmlElement Tables = xml.DocumentElement;
@@ -87,23 +127,49 @@ namespace БалансДанные
                 Tables.AppendChild(xml.ImportNode(dat, true));
             }
 
+            Log.AddMessage("Файл успешно преобразован.\n", Log.MessageType.Success);
+
+            try
+            {
+                BalanceCore.BalanceCore core = new BalanceCore.BalanceCore(path, Log);
+                Log.AddMessage("Затрачено на расчёт: " + core.Calculate() + " cек\n", Log.MessageType.Info);
+            }
+            catch (Exception ex)
+            {
+                Log.AddMessage("Данные по ошибке: " + ex.Message, Log.MessageType.Error);
+            }
 
             xml.Save(path);
+            Log.AddMessage("База сохранена по адресу: " + path + "\n", Log.MessageType.Info);
             datas = null;
             Data.BaseData = null;
+            File.Delete(buffer.FullName);
 
-            MessageBox.Show("Готов!");
+            try
+            {
+                path = path.Replace(".bbr", "_Невязки.bbr");
+                Output(path);
+            }
+            catch (Exception)
+            {
+            }
+
+            //MessageBox.Show("Готов!");
         }
 
+        //OPEN EXCEL BUTTON
         private void opnExcel_Click(object sender, EventArgs e)
         {
             string path = ExcelAdapter.Open(IsExcel: true)?[0];
             if (path == null) return;
 
+            lblCount.Text = String.Empty;
+            txtCount.Text = String.Empty;
+
             using (ExcelPackage p = new ExcelPackage(new FileInfo(path)))
             {
-                //try
-                //{
+                try
+                {
                     var sheet = p.Workbook.Worksheets[1];
                     ExcelRangeBase cell = sheet.Cells[1, 1];
 
@@ -131,19 +197,32 @@ namespace БалансДанные
 
                     if (col != 0)
                     {
-                        lblCount.Text = (col-1).ToString();
-                        txtCount.Text = (col-1).ToString();
+                        lblCount.Text = (col - 1).ToString();
+                        txtCount.Text = (col - 1).ToString();
                     }
 
-                //}
-                //catch (Exception exception)
-                //{
-                //    MessageBox.Show("Ошибка входного файла Excel");
-                //    return;
-                //}
+                    if (String.IsNullOrEmpty(txtCount.Text))
+                    {
+                        Log.AddMessage("Ошибка структуры файла Excel! Проверьте содержимое файла: " + path, Log.MessageType.Error);
+                        pathexcel.Clear();
+                        if (String.IsNullOrEmpty(pathTempl.Text) | String.IsNullOrEmpty(pathTempl.Text)) button1.Enabled = false;
+                    }
+                    else
+                    {
+                        Log.AddMessage("Успешно прочитан файл Excel: " + path, Log.MessageType.Success);
+                        pathExcel.Text = path;
+                        if (String.IsNullOrEmpty(pathTempl.Text) | String.IsNullOrEmpty(pathTempl.Text)) button1.Enabled = false;
+                        else button1.Enabled = true;
+                    }
+                }
+                catch (Exception)
+                {
+                    Log.AddMessage("Ошибка открытия файла Excel: " + path, Log.MessageType.Error);
+                    pathexcel.Clear();
+                    button1.Enabled = false;
+                    return;
+                }
             }
-
-            pathExcel.Text = path;
         }
 
         //Check text correct form
@@ -158,7 +237,8 @@ namespace БалансДанные
                 !str.StartsWith("Кор")) return true;
             return false;
         }
-#endregion
+
+        #endregion Table #1
 
         #region Table #2
 
@@ -167,6 +247,12 @@ namespace БалансДанные
         {
             string path = ExcelAdapter.Open(IsExcel: false)?[0];
             if (path == null) return;
+
+            Output(path);
+        }
+
+        private string Output(string path)
+        {
             path = Parser_2.ToXmlConverter_2(path);
 
             pathTempl2.Text = path;
@@ -177,14 +263,14 @@ namespace БалансДанные
             //УРОВЕНЬ <Tables>
             XmlElement Tables = xml.DocumentElement;
 
-            Parser_2.Statistic(Tables);
+            if(File.Exists(path))File.Delete(path);
 
-            //Parser.ToXmlConverter(path);
-            //Data.InitBaseData(Parser.PrepareXml(path)); //Create Base Regim
-            //Data.BaseData.DataRepresenter(); //Represent Base Regim
+            string output = Parser_2.Statistic(Tables);
+
+            Log.AddMessage("База успешно выгружена в файл: " + output + "\n", Log.MessageType.Info);
+            return output;
         }
 
-        #endregion
-
+        #endregion Table #2
     }
 }

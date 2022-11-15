@@ -1,5 +1,6 @@
 ﻿using Balance.Host;
 using BalanceCore;
+using ClassLibrary1.Properties;
 using System;
 using System.Collections;
 using System.ComponentModel;

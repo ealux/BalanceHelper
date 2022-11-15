@@ -42,17 +42,17 @@ namespace BalanceCore
 
             FileInfo file = new FileInfo(Path);
             string saveName = file.FullName.Replace(".bbr", "_Невязки.bbr");
+            AddinStaticRgm rgm = new AddinStaticRgm();
 
             try
             {
-                Data data = new Data();
+                Data data = new Data(AddinStaticRgm.ID);
                 data.log = this.log;
                 var data_base = data.dataBase;
 
                 data.DoInitialize2(data.PluginHost);
                 data.LoadFile(file.FullName);
 
-                AddinStaticRgm rgm = new AddinStaticRgm();
                 rgm.log = this.log;
 
                 rgm.DoInitialize2(data.PluginHost, data);
@@ -77,6 +77,9 @@ namespace BalanceCore
             finally
             {
                 sw.Stop();
+                log.AddMessage("Ошибка расчёта!", Log.MessageType.Error);
+                rgm.ldata.dataBase.SaveDB(saveName);
+                log.AddMessage("Файл успешно сохранен:" + saveName, Log.MessageType.Info);
             }
             return sw.Elapsed.ToString();
         }

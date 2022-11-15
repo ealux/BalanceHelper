@@ -1735,7 +1735,7 @@ namespace Balance.Rgm
                         }
                         if (!urav1.Collapsed)
                         {
-                            AddinStaticRgm.IP.AddMessage(1, "Достигнут предел сворачивания по ветвям: " + (object)urav1.Vars[0], 0, 2);
+                            //AddinStaticRgm.IP.AddMessage(1, "Достигнут предел сворачивания по ветвям: " + (object)urav1.Vars[0], 0, 2);
                             ++urav1.NumCollapsed;
                         }
                         else if (num1 != 0.0)

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>БалансДанные</RootNamespace>
     <AssemblyName>БалансДанные</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -90,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="BalanceCore\BalanceCore.csproj">
-      <Project>{90fe3515-bcd6-4b50-88af-d5778b172f5e}</Project>
+      <Project>{90FE3515-BCD6-4B50-88AF-D5778B172F5E}</Project>
       <Name>BalanceCore</Name>
     </ProjectReference>
   </ItemGroup>

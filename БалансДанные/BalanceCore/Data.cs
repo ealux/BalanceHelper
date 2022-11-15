@@ -1,5 +1,6 @@
 ﻿using Balance.Host;
 using BalanceCore;
+using Balance.Rgm;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors.Repository;
 using DevExpress.XtraGrid.Columns;
@@ -17,16 +18,11 @@ namespace Balance.Data
     [Export(typeof(Plugin))]
     public class Data : Plugin, IPData
     {
-        public void CmdNextBaseItemOnAction()
-        {
-            BarEditItem barItem = ((PluginCommand)this.riSelectedRegim.Tag).BarItem as BarEditItem;
-            if (!(barItem.EditValue is DataRegimItem editValue))
-                return;
-            int num = this.dataRegimItems.IndexOf(editValue);
-            if (this.dataRegimItems.Count <= num + 1)
-                return;
-            barItem.EditValue = (object)this.dataRegimItems[num + 1];
-        }
+
+        private IPData IAD = PluginHost.GetPlugin(100) as IPData;
+        internal static IPForm IF;
+        private int ru;
+        private int rq;
 
         public Log log { get; set; }
         private object syncObject = new object();
@@ -36,10 +32,27 @@ namespace Balance.Data
         public DataBase dataBase;
         private string pathSave;
 
-        //internal static IPProtocol IP;
-        internal static IPForm IF;
+       
 
-        //internal static IPGraph IG;
+        public Data(IPData iad)
+        {
+            //this.IAD = iad;
+            //DataTable table = IAD.GetTable("regim");
+            //this.ru = (int)table.Rows[0][nameof(ru)];
+            //this.rq = (int)table.Rows[0][nameof(rq)];
+        }
+
+        public void CmdNextBaseItemOnAction()
+        {
+            BarEditItem barItem = ((PluginCommand)this.riSelectedRegim.Tag).BarItem as BarEditItem;
+            if (!(barItem.EditValue is DataRegimItem editValue))
+                return;
+            int num = this.dataRegimItems.IndexOf(editValue);
+            if (this.dataRegimItems.Count <= num + 1)
+                return;
+            barItem.EditValue = (object)this.dataRegimItems[num + 1];
+        }       
+
 
         private void InitializeComponent()
         {
@@ -144,6 +157,165 @@ namespace Balance.Data
             pluginCommand14.Caption = "Следующий режим в базе";
             pluginCommand14.Description = "Следующий режим в базе";
             pluginCommand14.Action += new EventHandler(this.CmdNextBaseItemOnAction);
+        }
+
+
+        internal int GetError()
+        {
+            List<string> stringList = new List<string>();
+            int num1 = 0;
+            this.log.AddMessage("Контроль данных", Log.MessageType.Info);
+            DataTable table1 = this.IAD.GetTable("node");
+            DataTable table2 = this.IAD.GetTable("vetv");
+            if (table1 == null)
+            {
+                this.log.AddMessage("Таблица узлов не найдена", Log.MessageType.Error);
+                ++num1;
+            }
+            if (table2 == null)
+            {
+                this.log.AddMessage("Таблица ветвей не найдена", Log.MessageType.Error);
+                ++num1;
+            }
+            if (table1 != null)
+            {
+                if (table2 != null)
+                {
+                    foreach (DataRow dataRow in table1.Select("ny Is Null"))
+                        dataRow["sta"] = (object)false;
+                    foreach (DataRow dataRow in table2.Select("ip Is Null OR iq Is Null OR ip = iq"))
+                        dataRow["sta"] = (object)false;
+                    stringList.Clear();
+                    foreach (DataRow row in (InternalDataCollectionBase)table1.Rows)
+                    {
+                        if (row["ny"] is uint)
+                        {
+                            DataRow[] dataRowArray = table1.Select("sta = true AND ny = " + row["ny"]);
+                            for (int index = 1; index < dataRowArray.Length; ++index)
+                            {
+                                dataRowArray[index]["sta"] = (object)false;
+                                stringList.Add("Отк. узел - " + row["ny"]);
+                            }
+                        }
+                    }
+                    foreach (DataRow dataRow in table1.Select("sta = true"))
+                    {
+                        object obj = dataRow["ny"];
+                        if (table2.Select("sta = true AND (ip = " + obj + " OR iq = " + obj + ")").Length == 0)
+                        {
+                            dataRow["sta"] = (object)false;
+                            stringList.Add("Отк. узел - " + obj);
+                        }
+                    }
+                    if (stringList.Count > 0)
+                    {
+                        this.log.AddMessage("Узел без связей или дубль", Log.MessageType.Error);
+                        foreach (string msg in stringList)
+                            this.log.AddMessage(msg, Log.MessageType.Error);
+                    }
+                    stringList.Clear();
+                    foreach (DataRow dataRow in table2.Select("sta = true"))
+                    {
+                        if (table1.Select("sta = true AND (ny = " + dataRow["ip"] + " OR ny = " + dataRow["iq"] + ")").Length < 2)
+                        {
+                            dataRow["sta"] = (object)false;
+                            stringList.Add("Отк. ветвь " + dataRow["ip"] + " - " + dataRow["iq"]);
+                        }
+                    }
+                    if (stringList.Count > 0)
+                    {
+                        this.log.AddMessage("Отсутстсвует узел ограничевающий ветвь", Log.MessageType.Error);
+                        foreach (string msg in stringList)
+                            this.log.AddMessage(msg, Log.MessageType.Error);
+                    }
+                    foreach (DataRow dataRow in table1.Select("sta = true AND (uhom Is Null OR uhom = 0)"))
+                    {
+                        this.log.AddMessage("Узел " + dataRow["ny"] + ". недопустимое номинальное напряжение Uном=0.0", Log.MessageType.Error);
+                        ++num1;
+                    }
+                    foreach (DataRow dataRow1 in table2.Select("sta = true"))
+                    {
+                        DataRow[] dataRowArray = table2.Select("sta = true AND np = " + dataRow1["np"] + " AND ((ip = " + dataRow1["ip"] + " AND iq = " + dataRow1["iq"] + ") OR (ip = " + dataRow1["iq"] + " AND iq = " + dataRow1["ip"] + "))");
+                        int num2 = 1;
+                        if (dataRowArray.Length > 1 && dataRow1["np"] is uint && (uint)dataRow1["np"] == 0U)
+                        {
+                            foreach (DataRow dataRow2 in dataRowArray)
+                                dataRow2["np"] = (object)num2++;
+                        }
+                        else if (dataRowArray.Length > 1)
+                        {
+                            this.log.AddMessage("Найдены одинаковые ветви " + dataRow1["ip"] + " - " + dataRow1["iq"] + "(" + dataRow1["np"] + ")", Log.MessageType.Error);
+                            dataRow1["sta"] = (object)false;
+                        }
+                    }
+                    foreach (DataRow dataRow1 in table1.Select("sta = true"))
+                    {
+                        DataRow[] dataRowArray = table2.Select("sta = true AND (ip = " + dataRow1["ny"] + " OR iq = " + dataRow1["ny"] + ")");
+                        if (dataRowArray.Length == 0)
+                        {
+                            dataRow1["sta"] = (object)false;
+                        }
+                        else
+                        {
+                            foreach (DataRow dataRow2 in dataRowArray)
+                            {
+                                if (table1.Select("sta = true AND ny = " + dataRow2["ip"]).Length == 0)
+                                    dataRow2["sta"] = (object)false;
+                                else if (table1.Select("sta = true AND ny = " + dataRow2["iq"]).Length == 0)
+                                    dataRow2["sta"] = (object)false;
+                            }
+                        }
+                        if (table2.Select("sta = true AND (ip = " + dataRow1["ny"] + " OR iq = " + dataRow1["ny"] + ")").Length == 0)
+                            dataRow1["sta"] = (object)false;
+                    }
+                    if (table1.Select("sta = true").Length == 0)
+                    {
+                        this.log.AddMessage("Число вкл. узлов 0", Log.MessageType.Error);
+                        ++num1;
+                    }
+                    if (table2.Select("sta = true").Length == 0)
+                    {
+                        this.log.AddMessage("Число вкл. ветвей 0", Log.MessageType.Error);
+                        ++num1;
+                    }
+                    if (num1 == 0)
+                    {
+                        foreach (DataRow row in (InternalDataCollectionBase)table2.Rows)
+                        {
+                            if (!row["ktr"].Equals((object)DBNull.Value))
+                            {
+                                DataRow[] dataRowArray = table1.Select("sta = true AND (ny = " + row["ip"] + " OR ny = " + row["iq"] + ")");
+                                if (dataRowArray.Length == 2)
+                                {
+                                    double num2 = Math.Max((double)dataRowArray[0]["uhom"], (double)dataRowArray[1]["uhom"]);
+                                    double num3 = Math.Min((double)dataRowArray[0]["uhom"], (double)dataRowArray[1]["uhom"]);
+                                    if ((double)row["ktr"] <= 1.0)
+                                    {
+                                        double num4 = num2 * (double)row["ktr"];
+                                        if (num4 <= num3 - num3 / 1.0 || num4 >= num3 + num3 / 1.0)
+                                            this.log.AddMessage("Неправильные номинальные напряжения для узлов " + dataRowArray[0]["ny"] + ", " + dataRowArray[1]["ny"] + " или коэффициент трансформации для ветви " + row["ip"] + " - " + row["iq"] + " (" + row["np"] + ")", Log.MessageType.Error);
+                                    }
+                                    else
+                                    {
+                                        double num4 = num3 * (double)row["ktr"];
+                                        if (num4 <= num2 - num2 / 1.0 || num4 >= num2 + num2 / 1.0)
+                                            this.log.AddMessage("Неправильные номинальные напряжения для узлов " + dataRowArray[0]["ny"] + ", " + dataRowArray[1]["ny"] + " или коэффициент трансформации для ветви " + row["ip"] + " - " + row["iq"] + " (" + row["np"] + ")", Log.MessageType.Error);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (num1 == 0)
+                    {
+                        if (new Nabl(this.IAD).GetNabl(this.rq) > 0)
+                        {
+                            this.log.AddMessage("Сеть не наблюдаема", Log.MessageType.Error);
+                            ++num1;
+                        }
+                    }
+                }
+            }
+            return num1;
         }
 
         private void InitInfo()

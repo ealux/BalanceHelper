@@ -129,21 +129,21 @@ namespace БалансДанные
 
             Log.AddMessage("Файл успешно преобразован.\n", Log.MessageType.Success);
 
-            try
-            {
-                BalanceCore.BalanceCore core = new BalanceCore.BalanceCore(path, Log);
-                Log.AddMessage("Затрачено на расчёт: " + core.Calculate() + " cек\n", Log.MessageType.Info);
-            }
-            catch (Exception ex)
-            {
-                Log.AddMessage("Данные по ошибке: " + ex.Message, Log.MessageType.Error);
-            }
+            //try
+            //{
+            //    BalanceCore.BalanceCore core = new BalanceCore.BalanceCore(path, Log);
+            //    Log.AddMessage("Затрачено на расчёт: " + core.Calculate() + " cек\n", Log.MessageType.Info);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Log.AddMessage("Данные по ошибке: " + ex.Message, Log.MessageType.Error);
+            //}
 
             xml.Save(path);
             Log.AddMessage("База сохранена по адресу: " + path + "\n", Log.MessageType.Info);
             datas = null;
             Data.BaseData = null;
-            File.Delete(buffer.FullName);
+            //File.Delete(buffer.FullName);
 
             try
             {

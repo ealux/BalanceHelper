@@ -88,8 +88,8 @@ namespace БалансДанные
             //Branches header filling
             foreach (Branch node in firstData.Branches)
             {
-                pwb.Worksheets["Branches"].Cells[1, col, 1, col + 5].Merge = true;
-                pwb.Worksheets["Branches"].Cells[1, col, 1, col + 5].Style.HorizontalAlignment =
+                pwb.Worksheets["Branches"].Cells[1, col, 1, col + 11].Merge = true;
+                pwb.Worksheets["Branches"].Cells[1, col, 1, col + 11].Style.HorizontalAlignment =
                     ExcelHorizontalAlignment.Center;
 
                 //Set borders
@@ -101,18 +101,32 @@ namespace БалансДанные
                 pwb.Worksheets["Branches"].Column(col + 4).Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 pwb.Worksheets["Branches"].Column(col + 5).Style.Border.Right.Style = ExcelBorderStyle.Medium; //Last column border - Medium
 
-                pwb.Worksheets["Branches"].Cells[1, col, 1, col + 5].Value = $"Ветвь: {node.NumberStart}-{node.NumberEnd} Имя: {node.Name}";
+                pwb.Worksheets["Branches"].Column(col + 6).Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                pwb.Worksheets["Branches"].Column(col + 7).Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                pwb.Worksheets["Branches"].Column(col + 8).Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                pwb.Worksheets["Branches"].Column(col + 9).Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                pwb.Worksheets["Branches"].Column(col + 10).Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                pwb.Worksheets["Branches"].Column(col + 11).Style.Border.Right.Style = ExcelBorderStyle.Medium; //Last column border - Medium
+
+
+                pwb.Worksheets["Branches"].Cells[1, col, 1, col + 11].Value = $"Ветвь:\n{node.NumberStart}-{node.NumberEnd} Имя: {node.Name}";
 
                 var filler = pwb.Worksheets["Branches"].Cells[2, col];
 
-                filler.Value = "Ризм";
-                filler.Offset(0, 1).Value = "Ррасч";
-                filler.Offset(0, 2).Value = "Ризм-Ррасч";
-                filler.Offset(0, 3).Value = "Ризм-Ррасч %";
+                filler.Value = "РизмП";
+                filler.Offset(0, 1).Value = "РрасчП";
+                filler.Offset(0, 2).Value = "РизмП-РрасчП";
+                filler.Offset(0, 3).Value = "РизмП-РрасчП %";
                 filler.Offset(0, 4).Value = "δ %";
                 filler.Offset(0, 5).Value = "dP";
+                filler.Offset(0, 6).Value = "РизмO";
+                filler.Offset(0, 7).Value = "РрасчО";
+                filler.Offset(0, 8).Value = "РизмО-РрасчО";
+                filler.Offset(0, 9).Value = "РизмО-РрасчО %";
+                filler.Offset(0, 10).Value = "δ %";
+                filler.Offset(0, 11).Value = "dP";
 
-                col += 6;
+                col += 12;
             }
 
             //Headers ("Nodes") style tunning
@@ -220,7 +234,8 @@ namespace БалансДанные
                     if (n.Name != "vetv") continue;
 
                     if (n["ip"].InnerText == branch.NumberStart.ToString() &
-                        n["iq"].InnerText == branch.NumberEnd.ToString())
+                        n["iq"].InnerText == branch.NumberEnd.ToString() &
+                        n["np"].InnerText == branch.Npar.ToString())
                     {
                         oprNode = n;
                         break;
@@ -231,13 +246,13 @@ namespace БалансДанные
 
                 //string postion;
 
-                double pizm = 0.0;
-                double pras = 0.0;
+                double pizmP = 0.0;
+                double prasP = 0.0;
+                double pizmO = 0.0;
+                double prasO = 0.0;
 
-                if ((oprNode["ippizmo"] != null | oprNode["ippizmp"] != null) & (oprNode["iqpizmo"] == null | oprNode["iqpizmp"] == null)) //Только начало линии
-                {
-                    pizm = oprNode["ippizmp"] == null
-                           ? oprNode["ippizmo"] == null
+                pizmP = oprNode["ippizmp"] == null
+                          ? oprNode["ippizmo"] == null
                              ? 0.0
                              : (oprNode["ippizmo"].InnerText.Contains(".")
                                 ? double.Parse(oprNode["ippizmo"].InnerText.Replace(".", ","))
@@ -246,16 +261,8 @@ namespace БалансДанные
                                 ? double.Parse(oprNode["ippizmp"].InnerText.Replace(".", ","))
                                 : double.Parse(oprNode["ippizmp"].InnerText));
 
-                    pras = oprNode["ipp"] == null
-                             ? 0.0
-                             : oprNode["ipp"].InnerText.Contains(".")
-                               ? double.Parse(oprNode["ipp"].InnerText.Replace(".", ","))
-                               : double.Parse(oprNode["ipp"].InnerText);
-                }
-                else if ((oprNode["ippizmo"] == null | oprNode["ippizmp"] == null) & (oprNode["iqpizmo"] != null | oprNode["iqpizmp"] != null)) //Только конец линии
-                {
-                    pizm = oprNode["iqpizmp"] == null
-                           ? oprNode["iqpizmo"] == null
+                pizmO = oprNode["iqpizmp"] == null
+                          ? oprNode["iqpizmo"] == null
                              ? 0.0
                              : (oprNode["iqpizmo"].InnerText.Contains(".")
                                 ? double.Parse(oprNode["iqpizmo"].InnerText.Replace(".", ","))
@@ -263,24 +270,30 @@ namespace БалансДанные
                            : (oprNode["iqpizmp"].InnerText.Contains(".")
                                 ? double.Parse(oprNode["iqpizmp"].InnerText.Replace(".", ","))
                                 : double.Parse(oprNode["iqpizmp"].InnerText));
+                
 
-                    pras = oprNode["iqp"] == null
-                             ? 0.0
-                             : oprNode["iqp"].InnerText.Contains(".")
-                               ? double.Parse(oprNode["iqp"].InnerText.Replace(".", ","))
-                               : double.Parse(oprNode["iqp"].InnerText);
-                }
-                else if ((oprNode["ippizmo"] == null | oprNode["ippizmp"] == null) & (oprNode["iqpizmo"] == null | oprNode["iqpizmp"] == null)) //Нет данных
-                {
-                    pizm = 0.0;
-                    pras = 0.0;
-                }
+                prasP = oprNode["ipp"] == null
+                         ? 0.0
+                         : oprNode["ipp"].InnerText.Contains(".")
+                           ? double.Parse(oprNode["ipp"].InnerText.Replace(".", ","))
+                           : double.Parse(oprNode["ipp"].InnerText);
 
-                double pizm_pras = Math.Abs(pizm) >= Math.Abs(pras)
-                                   ? Math.Abs(pizm) - Math.Abs(pras)
-                                   : -(Math.Abs(pras) - Math.Abs(pizm));
+                prasO = oprNode["iqp"] == null
+                         ? 0.0
+                         : oprNode["iqp"].InnerText.Contains(".")
+                           ? double.Parse(oprNode["iqp"].InnerText.Replace(".", ","))
+                           : double.Parse(oprNode["iqp"].InnerText);
 
-                double pizm_pras_proc = pizm != 0.0 ? (pizm_pras / pizm) : 0.0;
+
+                double pizm_prasP = Math.Abs(pizmP) >= Math.Abs(prasP)
+                                   ? Math.Abs(pizmP) - Math.Abs(prasP)
+                                   : -(Math.Abs(prasP) - Math.Abs(pizmP));
+                double pizm_prasO = Math.Abs(pizmO) >= Math.Abs(prasO)
+                                   ? Math.Abs(pizmO) - Math.Abs(prasO)
+                                   : -(Math.Abs(prasO) - Math.Abs(pizmO));
+
+                double pizm_pras_procP = pizmP != 0.0 ? (pizm_prasP / pizmP) : 0.0;
+                double pizm_pras_procO = pizmO != 0.0 ? (pizm_prasO / pizmO) : 0.0;
 
                 double ppogfull = oprNode["ipppogfull"] == null
                     ? 0.0
@@ -294,20 +307,32 @@ namespace БалансДанные
                         ? double.Parse(oprNode["dp"].InnerText.Replace(".", ","))
                         : double.Parse(oprNode["dp"].InnerText);
 
-                pws.Cells[row, col].Value = Math.Abs(pizm);
+                pws.Cells[row, col].Value = Math.Abs(pizmP);
                 pws.Cells[row, col].Style.Numberformat.Format = "#,##0.00";
-                pws.Cells[row, col + 1].Value = Math.Abs(pras);
+                pws.Cells[row, col + 1].Value = Math.Abs(prasP);
                 pws.Cells[row, col + 1].Style.Numberformat.Format = "#,##0.00";
-                pws.Cells[row, col + 2].Value = pizm_pras;
+                pws.Cells[row, col + 2].Value = pizm_prasP;
                 pws.Cells[row, col + 2].Style.Numberformat.Format = "#,##0.00";
-                pws.Cells[row, col + 3].Value = pizm_pras_proc;
+                pws.Cells[row, col + 3].Value = pizm_pras_procP;
                 pws.Cells[row, col + 3].Style.Numberformat.Format = "#0.00%";
                 pws.Cells[row, col + 4].Value = ppogfull / 100;
                 pws.Cells[row, col + 4].Style.Numberformat.Format = "#0.00%";
                 pws.Cells[row, col + 5].Value = dp;
                 pws.Cells[row, col + 5].Style.Numberformat.Format = "#,##0.00";
+                pws.Cells[row, col + 6].Value = Math.Abs(pizmO);
+                pws.Cells[row, col + 6].Style.Numberformat.Format = "#,##0.00";
+                pws.Cells[row, col + 7].Value = Math.Abs(prasO);
+                pws.Cells[row, col + 7].Style.Numberformat.Format = "#,##0.00";
+                pws.Cells[row, col + 8].Value = pizm_prasO;
+                pws.Cells[row, col + 8].Style.Numberformat.Format = "#,##0.00";
+                pws.Cells[row, col + 9].Value = pizm_pras_procO;
+                pws.Cells[row, col + 9].Style.Numberformat.Format = "#0.00%";
+                pws.Cells[row, col + 10].Value = ppogfull / 100;
+                pws.Cells[row, col + 10].Style.Numberformat.Format = "#0.00%";
+                pws.Cells[row, col + 11].Value = dp;
+                pws.Cells[row, col + 11].Style.Numberformat.Format = "#,##0.00";
 
-                col += 6;
+                col += 12;
             }
         }
     }

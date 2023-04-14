@@ -13,11 +13,16 @@ namespace БалансДанные
         public List<double> PinData { get; set; } = new List<double>();
         public List<double> PoutData { get; set; } = new List<double>();
         public string Type { get; set; }
+
+        public string Name { get; set; }
+
         public int Start { get; set; }
         public int End { get; set; } = 0;
 
+        public int Npar { get; set; } = 0;
+
         //ExcData ctor
-        public ExcData(Tuple<int, int, bool, bool> Row, DataGridView dataGrid, ExcelPackage p)
+        public ExcData(Tuple<int, int, string, bool, bool> Row, DataGridView dataGrid, ExcelPackage p)
         {
             Regex vetvRegex = new Regex("(\\d*)-(\\d*)");
 
@@ -26,17 +31,17 @@ namespace БалансДанные
             else this.Type = "branch";
 
             //Preapare Pin/Pout positions
-            if (Row.Item3 & Row.Item4)
+            if (Row.Item4 & Row.Item5)
             {
                 Pin = true;
                 Pout = true;
             }
-            else if (Row.Item3 & !Row.Item4)
+            else if (Row.Item4 & !Row.Item5)
             {
                 Pin = true;
                 Pout = false;
             }
-            else if (!Row.Item3 & Row.Item4)
+            else if (!Row.Item4 & Row.Item5)
             {
                 Pin = false;
                 Pout = true;
@@ -52,6 +57,7 @@ namespace БалансДанные
                         Int32.Parse(row.Cells[0].Value.ToString()) == Row.Item1)
                     {
                         this.Start = Row.Item1;
+                        this.Name = Row.Item3;
 
                         Tuple<bool, bool> InOut = new Tuple<bool, bool>(this.Pin, this.Pout);
 
@@ -77,17 +83,20 @@ namespace БалансДанные
                 {
                     if (vetvRegex.IsMatch(row.Cells[0].Value.ToString()) &&
                         (Int32.Parse(row.Cells[0].Value.ToString().Split('-')[0]) == Row.Item1 &
-                        Int32.Parse(row.Cells[0].Value.ToString().Split('-')[1]) == Row.Item2))
+                        Int32.Parse(row.Cells[0].Value.ToString().Split('-')[1]) == Row.Item2) &
+                        row.Cells[1].Value.ToString() == Row.Item3)
                     {
                         this.Start = Row.Item1;
                         this.End = Row.Item2;
+                        this.Name = Row.Item3;
 
                         Tuple<bool, bool> InOut = new Tuple<bool, bool>(this.Pin, this.Pout);
 
                         foreach (Branch b in Data.BaseData.Branches)
                         {
                             if (b.NumberStart == this.Start &&
-                                b.NumberEnd == this.End)
+                                b.NumberEnd == this.End &&
+                                b.Name == this.Name)
                             {
                                 if (InOut.Item1 & b.SourceBranch["iqpizmp"] == null)
                                 {

@@ -101,7 +101,8 @@ namespace БалансДанные
                     foreach (Branch branch in data.Branches)
                     {
                         if (branch.NumberStart == e.Start &
-                            branch.NumberEnd == e.End)
+                            branch.NumberEnd == e.End &
+                            branch.Name == e.Name)
                         {
                             if (e.Pin) branch.Pin = e.PinData[step];
                             if (e.Pout) branch.Pout = e.PoutData[step];
@@ -177,7 +178,9 @@ namespace БалансДанные
                 {
                     if (source.Name == "vetv" &&
                         (source["ip"].InnerText == b.NumberStart.ToString() &
-                         source["iq"].InnerText == b.NumberEnd.ToString())) source.InnerXml = b.SourceBranch.InnerXml;
+                         source["iq"].InnerText == b.NumberEnd.ToString()) &
+                         (int.Parse(source["np"].InnerText) == b.Npar | source["name"].InnerText == b.Name)) 
+                           source.InnerXml = b.SourceBranch.InnerXml;
                 }
             }
         }
@@ -271,8 +274,10 @@ namespace БалансДанные
 
         //
         public int? NumberStart { get; set; }
-
         public int? NumberEnd { get; set; }
+
+        public int? Npar { get; set; }
+
         public string Name { get; set; }
         public double? Pout { get; set; }
         public double? Pin { get; set; }
@@ -291,6 +296,10 @@ namespace БалансДанные
 
                     case "iq":
                         this.NumberEnd = Int32.Parse(branch.InnerText);
+                        break;
+
+                    case "np":
+                        this.Npar = Int32.Parse(branch.InnerText);
                         break;
 
                     case "name":

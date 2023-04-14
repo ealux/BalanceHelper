@@ -59,12 +59,12 @@ namespace БалансДанные
         }
 
         //Balance-like cells input identificator. Let to point to Excel-taken cell
-        public static List<Tuple<int, int, bool, bool>> DataGridParser(DataGridView dataGrid)
+        public static List<Tuple<int, int, string, bool, bool>> DataGridParser(DataGridView dataGrid)
         {
             Regex regex = new Regex("@(\\d*)#([A-Za-z]?)(\\d*)");
             Regex vetvRegex = new Regex("(\\d*)-(\\d*)");
 
-            List<Tuple<int, int, bool, bool>> Rows = new List<Tuple<int, int, bool, bool>>();
+            List<Tuple<int, int, string, bool, bool>> Rows = new List<Tuple<int, int, string, bool, bool>>();
 
             foreach (DataGridViewRow row in dataGrid.Rows)
             {
@@ -72,12 +72,12 @@ namespace БалансДанные
                 if (row.Cells[3].Value == null) row.Cells[3].Value = "";
                 if (row.Cells[4].Value == null) row.Cells[4].Value = "";
 
-                Tuple<int, int, bool, bool> r;
+                Tuple<int, int, string, bool, bool> r;
                 if (regex.IsMatch(row.Cells[3].Value.ToString()))
                 {
                     if (regex.IsMatch(row.Cells[4].Value.ToString()))
                     {
-                        r = new Tuple<int, int, bool, bool>
+                        r = new Tuple<int, int, string, bool, bool>
                         (
                             !vetvRegex.IsMatch(row.Cells[0].Value.ToString())
                                 ? Int32.Parse(row.Cells[0].Value.ToString())
@@ -85,6 +85,7 @@ namespace БалансДанные
                             !vetvRegex.IsMatch(row.Cells[0].Value.ToString())
                                 ? 0
                                 : Int32.Parse(row.Cells[0].Value.ToString().Split('-')[1]),
+                            row.Cells[1].Value.ToString(),
                             true,
                             true
                         );
@@ -92,7 +93,7 @@ namespace БалансДанные
                     }
                     else
                     {
-                        r = new Tuple<int, int, bool, bool>
+                        r = new Tuple<int, int, string, bool, bool>
                         (
                             !vetvRegex.IsMatch(row.Cells[0].Value.ToString())
                                 ? Int32.Parse(row.Cells[0].Value.ToString())
@@ -100,6 +101,7 @@ namespace БалансДанные
                             !vetvRegex.IsMatch(row.Cells[0].Value.ToString())
                                 ? 0
                                 : Int32.Parse(row.Cells[0].Value.ToString().Split('-')[1]),
+                            row.Cells[1].Value.ToString(),
                             true,
                             false
                         );
@@ -109,7 +111,7 @@ namespace БалансДанные
                 else if (regex.IsMatch(row.Cells[4].Value.ToString()) &&
                          !regex.IsMatch(row.Cells[3].Value.ToString()))
                 {
-                    r = new Tuple<int, int, bool, bool>
+                    r = new Tuple<int, int, string, bool, bool>
                     (
                         !vetvRegex.IsMatch(row.Cells[0].Value.ToString())
                             ? Int32.Parse(row.Cells[0].Value.ToString())
@@ -117,6 +119,7 @@ namespace БалансДанные
                         !vetvRegex.IsMatch(row.Cells[0].Value.ToString())
                             ? 0
                             : Int32.Parse(row.Cells[0].Value.ToString().Split('-')[1]),
+                        row.Cells[1].Value.ToString(),
                         false,
                         true
                     );
@@ -127,7 +130,7 @@ namespace БалансДанные
             return Rows;
         }
 
-        public static List<XmlNode> DataParserHelper(List<Tuple<int, int, bool, bool>> Rows)
+        public static List<XmlNode> DataParserHelper(List<Tuple<int, int, string, bool, bool>> Rows)
         {
             if (Data.BaseData == null)
             {
